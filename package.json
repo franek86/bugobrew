@@ -1,0 +1,17 @@
+{
+  "name": "bugobrew",
+  "version": "1.0.0",
+  "description": "Bugobrew is an independent craft brewery.",
+  "author": "franek86",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {}
+}
