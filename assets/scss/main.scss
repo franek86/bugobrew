@@ -1,5 +1,12 @@
+@import "mixins";
 @import "variables";
 
-body{
-    background:$oldlace;
-}
+
+@import "typo";
+
+@import "grid";
+
+@import "base";
+
+@import "header";
+

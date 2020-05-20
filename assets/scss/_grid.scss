@@ -1,0 +1,17 @@
+.container {
+    max-width: $grid-width;
+    width: 100%;
+    padding: $padding-32 0;
+    margin:0 auto;
+}
+
+div[class^="col-"]{
+    border:1px solid $color-secondary;
+    margin: $margin-8 0;
+    padding: $padding-16;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}

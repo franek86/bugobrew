@@ -1,0 +1,17 @@
+.header {
+    background-color: $color-primary;
+}
+
+ul.main__nav{
+    display: flex;
+    flex-direction: row;
+
+    li{
+        a{
+            font-size: 2rem;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: $padding-16;
+        }
+    }
+}
