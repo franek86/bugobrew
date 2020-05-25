@@ -13,22 +13,26 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 
  export default {
-   fetch({store}){
+  /* fetch({store}){
      return axios.get('http://localhost:1337/blogs').then((res)=> {
        store.commit('frontPagePosts', res.data)
        console.log(res.data);
      }) . catch((error)=> {
        console.log(error)
      })
-   },
+   },*/
 
   computed:{
     posts(){
       return this.$store.state.posts
     }
+  },
+
+  mounted(){
+    this.$store.dispatch('getBlogPosts');
   }
  }
 
