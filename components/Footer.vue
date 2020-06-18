@@ -1,6 +1,10 @@
 <template>
-    <footer class="footer flex">
-        <Logo />
+    <footer class="footer">
+        <div class="container">
+            <Logo />
+             <h1>Footer</h1>
+        </div>
+        
     </footer>
 </template>
 

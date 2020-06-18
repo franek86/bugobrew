@@ -8,8 +8,8 @@
 
 <script>
 
-import AppHeader from "../components/AppHeader"
-import Footer from "../components/Footer"
+import AppHeader from "@/components/AppHeader"
+import Footer from "@/components/Footer"
 
 export default {
   components:{

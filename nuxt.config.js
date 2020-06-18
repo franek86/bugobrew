@@ -29,25 +29,51 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+  
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/style-resources'
   ],
   /*
   ** Axios modul congiguration
   */
   axios:{
-
+    baseURL:'http://localhost:1337'
   },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/local', method: 'post', propertyName: 'jwt' },
+          logout: false,
+          user: { url: '/users/me', method: 'get', propertyName: false }
+        },
+        tokenRequired: true,
+        tokenType: 'bearer',
+        // globalToken: true,
+        // autoFetchUser: true
+      },
+      tokenName: 'jwt'
+    },
+    redirect:{
+      login:'/auth/login',
+      home:'/Admin'
+    }
+  },
+
+  
 
   styleResources:{
       scss: [
