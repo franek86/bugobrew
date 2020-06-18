@@ -1,13 +1,13 @@
 <template>
     <div class="container">
-        <v-form>
+        <v-form v-model="isValid">
             
             <v-text-field v-model="userInfo.username" type="name" placeholder="Username" :rules="username" required></v-text-field>
            
             <v-text-field v-model="userInfo.email" type="email" placeholder="Email" :rules="emailRules" required></v-text-field>
             <v-text-field v-model="userInfo.password " type="password" placeholder="Password" :rules="passwordRules" error-count="5" required></v-text-field>
             <v-text-field v-model="userInfo.passwordConfirm " type="password" placeholder="Confirm password" :rules="confirmPasswordRules" required></v-text-field>
-            <v-btn class="btn--primary" @click.prevent="registerForm()">Registration</v-btn>
+            <v-btn class="btn--primary" @click.prevent="registerForm()" :disabled="!isValid">Registration</v-btn>
         </v-form>
         
         
@@ -24,7 +24,7 @@ export default {
 
     data(){
         return{
-
+            isValid:true,
             showPassword: false,
             userInfo:{
                 username:'',

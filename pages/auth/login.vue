@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <v-form>
+        <v-form v-model="isValid">
             <v-text-field v-model="userInfo.identifier" type="email" :rules="[v => !!v || 'Username is required']" placeholder="Email"></v-text-field>
             <v-text-field v-model="userInfo.password " type="password" :rules="[v => !!v || 'Password is required']" placeholder="Password"></v-text-field>
-            <v-btn class="btn--primary" @click.prevent="submitForm()">Login</v-btn>
+            <v-btn class="btn--primary" @click.prevent="submitForm()" :disabled="!isValid">Login</v-btn>
         </v-form>
         
         
@@ -18,7 +18,7 @@ export default {
 
     data(){
         return{
-            vaild: false,
+            isValid: true,
             showPassword: false,
             userInfo:{
                 identifier:'',
