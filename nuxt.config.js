@@ -29,13 +29,13 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-  
+    
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    
+    '@nuxtjs/vuetify',
   ],
   /*
   ** Nuxt.js modules
@@ -88,6 +88,7 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
+    
   }
 }

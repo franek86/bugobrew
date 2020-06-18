@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <form>
-            <input v-model="userInfo.identifier" type="email" placeholder="Email">
-            <input v-model="userInfo.password " type="password" placeholder="Password">
-            <button class="btn--primary" @click.prevent="submitForm()">Login</button>
-        </form>
+        <v-form>
+            <v-text-field v-model="userInfo.identifier" type="email" :rules="[v => !!v || 'Username is required']" placeholder="Email"></v-text-field>
+            <v-text-field v-model="userInfo.password " type="password" :rules="[v => !!v || 'Password is required']" placeholder="Password"></v-text-field>
+            <v-btn class="btn--primary" @click.prevent="submitForm()">Login</v-btn>
+        </v-form>
         
         
     </div>

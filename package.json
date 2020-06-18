@@ -18,5 +18,7 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.2"
+  }
 }
