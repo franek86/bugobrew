@@ -32,7 +32,7 @@ export default {
         async submitForm(){
            try{
                 await this.$auth.loginWith('local', { data: this.userInfo });
-                this.$router.push({name: 'Admin'}) 
+                this.$router.push({name: 'admin'}) 
            } catch(error){
                console.log(error.response.data.message);
            }

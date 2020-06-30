@@ -11,7 +11,7 @@
                     <div class="header__nav">
                         <ul class="main__nav">
                             <li><nuxt-link to="/">Home</nuxt-link></li>
-                            <li><nuxt-link to="/blog">Blog</nuxt-link></li>
+                            <li><nuxt-link to="/blogs">Blog</nuxt-link></li>
                         </ul>
                     </div>
                  </div>
