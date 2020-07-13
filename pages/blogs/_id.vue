@@ -3,16 +3,17 @@
    
     <article class="article__box">
       <div class="article__content">
-        <img :src="'http://localhost:1337' + post.Image.url" alt="" />
+        <div class="article__img" v-if="post.Image">
+            <img :src="`http://localhost:1337${post.Image.url}`" :alt="post.Image.alternativeText" />
+        </div>
+      
         <h1>{{post.Title}}</h1>
-      <p>{{post.Date}}</p>
-      <p>{{post.Author}}</p>
-      <p>{{post.Content}}</p>
+        <p>{{post.Date}}</p>
+        <p>{{post.Author}}</p>
+        <p>{{post.Content}}</p>
       </div>
       
-      <div class="article__img">
-       
-      </div>
+      
     </article>
    
   </div>
@@ -23,19 +24,7 @@
 
  export default {
 
-  // async asyncData(context){
-  //       try{
-  //           let res = await context.$axios.get(`http://localhost:1337/blogs/${context.params.slug}`)
-  //           let getSinglePost = res.data;
-  //           return {
-  //             getSinglePost
-  //           }
-  //           console.log(res);
-  //       } catch(error){
-  //           console.log(error);
-  //       }
-  //   },
-
+ 
    
   computed:{
     post(){
@@ -54,5 +43,8 @@
 
 
 <style lang="scss" scoped>
+  .article__box{
+    background: $color-secondary;
 
+  }
 </style>

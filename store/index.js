@@ -6,6 +6,8 @@ export const state = () => ({
     post: {},
 })
 
+
+
 export const mutations = {
     SETBLOGPOSTS(state, posts) {
         state.posts = posts

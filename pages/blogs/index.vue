@@ -12,7 +12,7 @@
       </div>
       
       <div class="article__img">
-        <img :src="'http://localhost:1337' + post.Image.url" alt="" />
+        <img :src="`http://localhost:1337${post.Image.url}`" alt="" />
       </div>
        </nuxt-link>
     </article>
