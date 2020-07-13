@@ -27,14 +27,13 @@
                          
                          <div v-else>
                              <div><nuxt-link to="/auth/login">Login</nuxt-link></div>
-                              <div><nuxt-link to="/auth/register">Register</nuxt-link></div>
                          </div>
                      </div>
 
-                     <div class="hamburger__icon" @click="toggleMenu()">
-                         <span></span>
-                     </div>
+                   
                  </div>
+
+                 <BurgerMenu />
            
             </div>  
             
@@ -45,6 +44,8 @@
 <script>
 
 import Logo from "../components/Logo"
+import Nav from "../components/Nav"
+import BurgerMenu from "../components/BurgerMenu"
 
 export default {
 
@@ -55,19 +56,13 @@ export default {
    },
 
   components: {
-      Logo
+      Logo,
+      Nav,
+      BurgerMenu
   },
   
   methods:{
-      toggleMenu(){
-        
-          if(this.openMenu){
-              this.openMenu = false;
-          } else {
-              this.openMenu = true;
-          }
-      },
-
+      
     async logout() {
         await this.$auth.logout();
     }
@@ -80,42 +75,6 @@ export default {
 </script>
 
 <style lang="scss">
-    .header__nav{
-        transform: translateY(-100%);
-        transition: all .4s ease-in-out;
+   
 
-        &.toggle__menu{
-            transform: translateY(0%);
-        }
-    }
-
-    .hamburger__icon{
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 6rem;
-        height: 8rem;
-        padding: 10px;
-        background: $color-white;
-
-        span,
-        span:after,
-        span:before{
-            content: '';
-            position: relative;
-            display: block;
-            height: 10px;
-            width: 100%;
-            border: 1px solid $color-primary;
-           
-        }
-
-        span:after{
-            top: -14px
-        }
-
-        span:before{
-            top: 12px
-        }
-    }
 </style>
