@@ -8,14 +8,7 @@
                 </div>
 
                  <div class="col-6">
-                    <div class="header__nav" :class="{toggle__menu : openMenu}">
-                        <ul class="main__nav">
-                            <li><nuxt-link to="/">Home</nuxt-link></li>
-                            <li><nuxt-link to="/blogs">Blog</nuxt-link></li>
-                            <li><nuxt-link to="/about">About</nuxt-link></li>
-                            <li><nuxt-link to="/contact">Contact</nuxt-link></li>
-                        </ul>
-                    </div>
+                    
                  </div>
 
                  <div class="col-3">
@@ -38,7 +31,14 @@
             </div>  
             
             <BurgerMenu />
-            <Nav />
+            <Nav>
+                <ul class="main__nav">
+                    <li><nuxt-link to="/">Home</nuxt-link></li>
+                    <li><nuxt-link to="/blogs">Blog</nuxt-link></li>
+                    <li><nuxt-link to="/about">About</nuxt-link></li>
+                    <li><nuxt-link to="/contact">Contact</nuxt-link></li>
+                </ul>
+            </Nav>
     </header>
 </template>
 
@@ -52,7 +52,7 @@ export default {
 
    data(){
        return{
-        openMenu: false
+        
        }
    },
 

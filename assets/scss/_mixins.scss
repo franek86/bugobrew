@@ -5,3 +5,13 @@ $columns: 12;
         flex: 0 0 100% / $columns * $i;
     }
 }
+
+
+/* nav transition */
+@mixin navItemTransition {
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        transition: all .4s #{$i * .3}s ease;
+      }
+    }
+  }

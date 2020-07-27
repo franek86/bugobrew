@@ -6,7 +6,7 @@
 
             <transition name="slide__menu">
                 <nav if="isSlideMenuOpen" class="slide__menu_nav">
-                    <p>test</p>
+                    <slot></slot>
                 </nav>
             </transition>
         </div>
@@ -60,6 +60,7 @@ export default {
         width: 50vw;
         transition: right 1s ease-in-out;
         clip-path: polygon(11% 0, 100% 0%, 100% 100%, 0 100%);
+        height: 100%;
 
         &.slide__menu_active{
             right: 0;
@@ -67,6 +68,7 @@ export default {
 
         .slide__menu_nav{
             clip-path: polygon(11% 0, 100% 0%, 100% 100%, 0 100%);
+            height: 100%;
         }
     }
 </style>
