@@ -12,16 +12,23 @@
 
 <script>
 export default {
-    data(){
+    /*data(){
         return{
             isHamburgerActive: false
         }
         
+    },*/
+
+    computed:{
+        isHamburgerActive(){
+            return this.$store.state.isNavOpen
+        }
     },
 
     methods:{
         toggleIconMenu(){
-            this.isHamburgerActive = !this.isHamburgerActive;
+            //this.isHamburgerActive = !this.isHamburgerActive;
+            this.$store.dispatch('getNavOpen');  
         }
     }
     

@@ -33,11 +33,12 @@
                    
                  </div>
 
-                 <BurgerMenu />
+                 
            
             </div>  
             
-       
+            <BurgerMenu />
+            <Nav />
     </header>
 </template>
 

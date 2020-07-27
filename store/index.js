@@ -4,6 +4,7 @@ const baseURL = 'http://localhost:1337';
 export const state = () => ({
     posts: [],
     post: {},
+    isNavOpen: false
 })
 
 
@@ -15,6 +16,10 @@ export const mutations = {
 
     SETSINGLEPOST(state,post){
         state.post = post
+    },
+
+    TOGGLENAV(state){
+        state.isNavOpen = !state.isNavOpen
     }
 }
 
@@ -36,6 +41,10 @@ export const actions = {
         } catch(error){
             console.log(error);
         }
+    },
+
+    getNavOpen(context){
+        context.commit('TOGGLENAV')
     }
 
 }
