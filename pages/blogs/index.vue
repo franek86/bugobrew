@@ -1,29 +1,29 @@
 <template>
-  <div class="article container">
-   
-    <article class="article__box" v-for="post in posts" :key="post.id">
-       <nuxt-link :to="{name:'blogs-id', params:{id: post.id}}">
-      <div class="article__content">
-        {{post.id}}
-        <h1>{{post.Title}}</h1>
-      <p>{{post.Excerpt}}</p>
-      <p>{{post.Date}}</p>
-      <p>{{post.Author}}</p>
+  <div>
+
+    <div class="blog__hero h--vh">
+      <div class="container">
+        <h1 class="scale--h1">Blog</h1>
       </div>
-      
-      <div class="article__img">
-        <img :src="`http://localhost:1337${post.Image.url}`" alt="" />
-      </div>
-       </nuxt-link>
-    </article>
-   
+    </div>
+  <div class="container">
+
+    <BlogList :posts='posts'/>
+
+    
+  </div>
   </div>
 </template>
 
 <script>
 
+import BlogList from '@/components/BlogList'
 
  export default {
+
+  components: {
+      BlogList
+  },
 
   computed:{
     posts(){
@@ -41,6 +41,10 @@
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
+  .blog__hero {
+    background-color: $color-primary;
+  }
+
 
 </style>

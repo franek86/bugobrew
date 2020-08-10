@@ -19,5 +19,14 @@ body{
         list-style: none;
         text-decoration: none;
     }
+
+    img{
+        width: 100%;
+    }
+
+    .h--vh {
+        min-height: 100vh;
+        padding: 10vw 0;
+    }
 }
 

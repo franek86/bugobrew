@@ -4,9 +4,14 @@ const baseURL = 'http://localhost:1337';
 export const state = () => ({
     posts: [],
     post: {},
-    isNavOpen: false
+    isNavOpen: false,
 })
 
+export const getters = {
+    latestPosts: state => {
+      return state.posts.slice(0,2)
+    }
+}
 
 
 export const mutations = {
@@ -27,7 +32,7 @@ export const actions = {
 
     async getBlogPosts({commit}){
         try{
-            let res = await axios.get(`${baseURL}/blogs`);
+            let res = await axios.get(`${baseURL}/blogs/?_sort=id:DESC`);
             commit('SETBLOGPOSTS', res.data);
         } catch(error){
             console.log(error);
