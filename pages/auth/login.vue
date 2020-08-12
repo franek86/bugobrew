@@ -1,14 +1,17 @@
 <template>
-    <div class="container">
-        <h1 class="text--red">
-            Login
-        </h1>
-        <form class="form">
-            <input class="form__input" v-model="userInfo.identifier" type="email"  placeholder="Email">
-            <input class="form__input" v-model="userInfo.password " type="password"  placeholder="Password">
-            <button class="btn--primary" @click.prevent="submitForm()">Login</button>
-        </form>
+    <div class="h--vh">
+        <div class="container">
         
+            <form class="form">
+                <h1 class="text--red m-b-25">
+                    Login
+                </h1>
+                <input class="form__input" v-model="userInfo.identifier" type="email"  placeholder="Email">
+                <input class="form__input" v-model="userInfo.password " type="password"  placeholder="Password">
+                <button class="btn--primary" @click.prevent="submitForm()">Login</button>
+            </form>
+            
+    </div>
     </div>
 </template>
 

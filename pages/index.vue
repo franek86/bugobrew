@@ -8,9 +8,9 @@
             </div>
         </section>
 
-        <section class="latest__blogs">
+        <section class="latest__blogs p-t-60 p-b-60">
             <div class="container">
-                <h2 class="text--red line--red">Latest Blog</h2>
+                <h2 class="text--red line--red m-b-25">Latest Blog</h2>
                 
                 <div class="grid columns-1 columns-m-2 latest__blog_flex">
                     <article class="latest__blogs_cart" v-for="latestPost in latestPosts" :key="latestPost.id">
@@ -53,7 +53,5 @@ export default {
         background-color: $color-primary;
     }
 
-    .latest__blogs{
-       
-    }
+  
 </style>

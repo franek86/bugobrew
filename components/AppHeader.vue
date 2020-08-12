@@ -1,17 +1,14 @@
 <template>
     <header class="header">
        
-            <div class="row">
+            <div class="grid columns-2">
 
-                <div class="col-3">
+                <div>
                     <Logo />
                 </div>
 
-                 <div class="col-6">
-                    
-                 </div>
-
-                 <div class="col-3">
+              
+                 <div>
                      <div class="login__nav">
                          <div v-if="$auth.loggedIn">
                              <div class="login__nav_user">{{$auth.user.username}}</div>
@@ -20,6 +17,7 @@
                          
                          <div v-else>
                              <div><nuxt-link to="/auth/login">Login</nuxt-link></div>
+                             <div><nuxt-link to="/auth/register">Register</nuxt-link></div>
                          </div>
                      </div>
 
