@@ -57,10 +57,11 @@ export default {
         right: -55vw;
         background: $color-secondary;
         min-height: 100vh;
-        width: 50vw;
+        width: 55vw;
         transition: right 1s ease-in-out;
         clip-path: polygon(11% 0, 100% 0%, 100% 100%, 0 100%);
         height: 100%;
+        
 
         &.slide__menu_active{
             right: 0;

@@ -1,12 +1,87 @@
+/*TABELS VIEW min width 767 px*/
+
 @media (min-width: $breakpoint-tablet){
+    .columns-m-3 {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    .columns-m-2 {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .columns-m-1 {
+        grid-template-columns: 1fr;
+    }
 
     .header{
         height: 5rem;
     }
 
-
     .scale--h1{
         font-size: 11vw;
     }
 
+    h1{
+        font-size: 4.2rem;
+    }
+
+    h2{
+        font-size: 3.15rem;
+    }
+
+    h3{
+        font-size: 2.36rem;
+    }
+
+    h4{
+        font-size: 1.77rem;
+    }
+
+    h5,h6,p{
+        font-size: 1.6rem;
+    }
+
+
 }
+
+/*BIG TABELS VIEW min width 1024 px*/
+@media (min-width: $breakpoint-desktop){
+
+    .columns-l-4 {
+        grid-template-columns: repeat(4, 1fr); 
+    }
+    .columns-l-3 {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    .columns-l-2 {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .columns-l-1 {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/*DESKTOP VIEW min width 1300 px*/
+@media (min-width: $breakpoint-xl-desktop){
+
+    .columns-xl-5 {
+        grid-template-columns: repeat(5, 1fr); 
+    }
+    .columns-xl-4 {
+        grid-template-columns: repeat(4, 1fr); 
+    }
+    .columns-xl-3 {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    .columns-xl-2 {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .columns-xl-1 {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+
+
+

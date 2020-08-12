@@ -2,7 +2,15 @@ $columns: 12;
 
 @for $i from 1 through $columns {
     .col-#{$i}{
+        
+       $multiplier: $i / $columns;
         flex: 0 0 100% / $columns * $i;
+        max-width: calc(100% * #{$multiplier} - #{$grid-gutter});
+
+       // $multiplier: $i / $columns;
+        //width: calc(100% * #{$multiplier} - #{$grid-gutter} * (1 - #{$multiplier}));
+  
+        
     }
 }
 

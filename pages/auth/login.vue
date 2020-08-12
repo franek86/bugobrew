@@ -1,11 +1,13 @@
 <template>
     <div class="container">
-        <v-form v-model="isValid">
-            <v-text-field v-model="userInfo.identifier" type="email" :rules="[v => !!v || 'Username is required']" placeholder="Email"></v-text-field>
-            <v-text-field v-model="userInfo.password " type="password" :rules="[v => !!v || 'Password is required']" placeholder="Password"></v-text-field>
-            <v-btn class="btn--primary" @click.prevent="submitForm()" :disabled="!isValid">Login</v-btn>
-        </v-form>
-        
+        <h1 class="text--red">
+            Login
+        </h1>
+        <form class="form">
+            <input class="form__input" v-model="userInfo.identifier" type="email"  placeholder="Email">
+            <input class="form__input" v-model="userInfo.password " type="password"  placeholder="Password">
+            <button class="btn--primary" @click.prevent="submitForm()">Login</button>
+        </form>
         
     </div>
 </template>
@@ -43,6 +45,28 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss">
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 90vw;
+        margin: 0 auto;
 
+        @media (min-width: $breakpoint-tablet){
+            max-width: 70vw;
+        }
+
+        @media (min-width: $breakpoint-xl-desktop){
+            max-width: 40vw;
+        }
+
+        &__input{
+            padding: $padding-16;
+            display: block;
+            width: 100%;
+            margin-bottom: $margin-16;                                           
+        }
+    }
 </style>

@@ -1,0 +1,16 @@
+.btn--primary{
+    background-color: $color-primary;
+    border: none;
+    padding: $padding-16 $padding-64;
+    color: $color-white;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    border:1px solid $color-primary;
+    transition: all .25s ease-in-out;
+
+    &:hover{
+        background-color: transparent;
+        color: $color-primary;
+    }
+}

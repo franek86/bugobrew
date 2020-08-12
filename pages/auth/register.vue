@@ -1,14 +1,15 @@
 <template>
     <div class="container">
-        <v-form v-model="isValid">
+        <h1 class="text--red">Registration</h1>
+        <form class="form">
             
-            <v-text-field v-model="userInfo.username" type="name" placeholder="Username" :rules="username" required></v-text-field>
+            <input class="form__input" v-model="userInfo.username" type="name" placeholder="Username"  required>
            
-            <v-text-field v-model="userInfo.email" type="email" placeholder="Email" :rules="emailRules" required></v-text-field>
-            <v-text-field v-model="userInfo.password " type="password" placeholder="Password" :rules="passwordRules" error-count="5" required></v-text-field>
-            <v-text-field v-model="userInfo.passwordConfirm " type="password" placeholder="Confirm password" :rules="confirmPasswordRules" required></v-text-field>
-            <v-btn class="btn--primary" @click.prevent="registerForm()" :disabled="!isValid">Registration</v-btn>
-        </v-form>
+            <input class="form__input" v-model="userInfo.email" type="email" placeholder="Email"  required>
+            <input class="form__input" v-model="userInfo.password " type="password" placeholder="Password"  required>
+            <input class="form__input" v-model="userInfo.passwordConfirm " type="password" placeholder="Confirm password"  required>
+            <button class="btn--primary" @click.prevent="registerForm()">Registration</button>
+        </form>
         
         
     </div>
@@ -31,27 +32,7 @@ export default {
                 email:'',
                 password:'',
                 confirmPassword:''
-            },
-
-            username:[
-                v => !!v || 'Username is required',
-            ],
-
-            emailRules: [
-            v => !!v || 'Email is required',
-            v => /.+@.+/.test(v) || 'E-mail must be valid'
-            ],
-            passwordRules: [
-                v => !!v || 'Password is required',
-                v => (v && v.length >= 5) || 'Password must have 5+ characters',
-                v => /(?=.*[A-Z])/.test(v) || 'Must have one uppercase character',
-                v => /(?=.*\d)/.test(v) || 'Must have one number',
-                v => /([!@$%])/.test(v) || 'Must have one special character [!@#$%]'
-            ],
-
-            confirmPasswordRules:[
-                confirmation => confirmation === this.userInfo.password || 'Passwords must match'
-            ]
+            }
             
         }
     },
@@ -74,6 +55,6 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss">
 
 </style>
