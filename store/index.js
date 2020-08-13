@@ -4,6 +4,7 @@ const baseURL = 'http://localhost:1337';
 export const state = () => ({
     posts: [],
     post: {},
+    blogCategories: [],
     isNavOpen: false,
 })
 
@@ -21,6 +22,10 @@ export const mutations = {
 
     SETSINGLEPOST(state,post){
         state.post = post
+    },
+
+    SETBLOGCATEGORIES(state,categories){
+        state.blogCategories = categories
     },
 
     TOGGLENAV(state){
@@ -48,10 +53,22 @@ export const actions = {
         }
     },
 
+    async getBlogCategories({commit}){
+        try{
+            let res = await axios.get(`${baseURL}/blog-categories/`);
+            commit('SETBLOGCATEGORIES', res.data);
+            
+        } catch(error){
+            console.log(error);
+        }
+    },
+
+
+
     getNavOpen(context){
         context.commit('TOGGLENAV')
-    }
-
+    },
+    
 }
 
 
