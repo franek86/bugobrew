@@ -10,12 +10,12 @@
               
                  <div>
                      <div class="login__nav">
-                         <div v-if="$auth.loggedIn">
-                             <div class="login__nav_user">{{$auth.user.username}}</div>
+                         <div v-if="isAuthenticated">
+                             <div class="login__nav_user">{{loggedInUser.username}}</div>
                              <div class="logout" @click.prevent="logout">Logout</div>
                          </div>
                          
-                         <div v-else>
+                         <div v-if="!isAuthenticated">
                              <div><nuxt-link to="/auth/login">Login</nuxt-link></div>
                              <div><nuxt-link to="/auth/register">Register</nuxt-link></div>
                          </div>
@@ -46,18 +46,18 @@ import Logo from "../components/Logo"
 import Nav from "../components/Nav"
 import BurgerMenu from "../components/BurgerMenu"
 
-export default {
+import { mapGetters } from 'vuex'
 
-   data(){
-       return{
-        
-       }
-   },
+export default {
 
   components: {
       Logo,
       Nav,
       BurgerMenu
+  },
+
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
   
   methods:{
