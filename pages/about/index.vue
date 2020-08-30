@@ -1,15 +1,14 @@
 <template>
-    <div class="continaer">
-        about
+    <div class="about">
+      <h1>ABOUT</h1>
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+  export default {
+   
+  };
 </script>
 
-<style lang="sass" scoped>
-
+<style lang="scss">
 </style>

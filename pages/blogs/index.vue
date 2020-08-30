@@ -8,10 +8,8 @@
     </div>
   <div class="container">
 
-    <BlogCategories :blogCategoriesList="blogCategoriesList"/>
     <BlogList :posts='posts'/>
-
-    
+  
   </div>
   </div>
 </template>
@@ -19,28 +17,26 @@
 <script>
 
 import BlogList from '@/components/BlogList'
-import BlogCategories from '@/components/BlogCategories'
+
 
  export default {
 
   components: {
       BlogList,
-      BlogCategories
+      
   },
 
   computed:{
     posts(){
       return this.$store.state.posts
-    },
-    blogCategoriesList(){
-      return this.$store.state.blogCategories
-    },
+    }
+   
     
   },
 
   mounted(){
-    this.$store.dispatch('getBlogPosts');
-    this.$store.dispatch('getBlogCategories');
+    this.$store.dispatch('getAllPosts');
+    
   }
  }
 

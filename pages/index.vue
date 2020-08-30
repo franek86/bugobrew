@@ -39,11 +39,11 @@
 export default {
     computed:{
         latestPosts(){
-            return this.$store.getters.latestPosts
+            return this.$store.getters.getLatestPosts
         }
     },
     mounted(){
-    this.$store.dispatch('getBlogPosts');
+    this.$store.dispatch('getAllPosts');
   }
 }
 </script>

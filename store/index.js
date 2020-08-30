@@ -4,41 +4,52 @@ const baseURL = 'http://localhost:1337';
 export const state = () => ({
     posts: [],
     post: {},
-    blogCategories: [],
+    postCategories: [],
     isNavOpen: false,
 })
 
 export const getters = {
-    latestPosts: state => {
+
+    getAllPosts: state => {
+        return state.posts
+    },
+   
+    getLatestPosts: state => {
       return state.posts.slice(0,2)
+    },
+    getPostCategories: state => {
+        return state.postCategories
+    },
+    getFilteredPosts: state => {
+        return state.filteredPosts
     }
 }
 
 
 export const mutations = {
-    SETBLOGPOSTS(state, posts) {
+    SET_POSTS(state, posts) {
         state.posts = posts
     },
 
-    SETSINGLEPOST(state,post){
+    SET_SINGLE_POST(state,post){
         state.post = post
     },
 
-    SETBLOGCATEGORIES(state,categories){
-        state.blogCategories = categories
+    SET_POST_CATEGORIES(state,categories){
+        state.postCategories = categories
     },
 
-    TOGGLENAV(state){
+    TOGGLE_NAV(state){
         state.isNavOpen = !state.isNavOpen
     }
 }
 
 export const actions = {
 
-    async getBlogPosts({commit}){
+    async getAllPosts({commit}){
         try{
             let res = await axios.get(`${baseURL}/blogs/?_sort=id:DESC`);
-            commit('SETBLOGPOSTS', res.data);
+            commit('SET_POSTS', res.data);
         } catch(error){
             console.log(error);
         }
@@ -47,26 +58,25 @@ export const actions = {
     async getSinglePost({commit},params){
         try{
             let res = await axios.get(`${baseURL}/blogs/${params}`);
-            commit('SETSINGLEPOST', res.data);
+            
+            commit('SET_SINGLE_POST', res.data);
         } catch(error){
             console.log(error);
         }
     },
 
-    async getBlogCategories({commit}){
+    async getPostCategories({commit}){
         try{
             let res = await axios.get(`${baseURL}/blog-categories/`);
-            commit('SETBLOGCATEGORIES', res.data);
+            commit('SET_POST_CATEGORIES', res.data);
             
         } catch(error){
             console.log(error);
         }
     },
 
-
-
     getNavOpen(context){
-        context.commit('TOGGLENAV')
+        context.commit('TOGGLE_NAV')
     },
     
 }

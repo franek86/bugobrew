@@ -1,6 +1,15 @@
 <template>
     <div>
+        <div class="category__lists m-t-35">
+            <div class="category__lists_item" v-for="category in setPostCategoriesList" :key="category.id">
+                <input type="checkbox" :name="category.Category" :id="category.id" :value="category.id" v-model="theBrothers">
+                <label :for="category.Category">{{category.Category}}</label>
+                
+            </div>  
+        </div>
+        
         <div class="grid column-1 columns-m-2 columns-l-3 blogs p-t-60 p-b-60">
+           
             <article class="blogs__cart" v-for="post in posts" :key="post.id">
                 <nuxt-link :to="{name:'blogs-id', params:{id: post.id}}">
                 <div class="blogs__img m-b-20">
@@ -18,8 +27,8 @@
                 </div>
                 
                 </nuxt-link>
-            </article>
-    </div> 
+            </article>     
+        </div> 
     </div>
 </template>
 
@@ -27,12 +36,27 @@
 
 
 export default {
-
+    
     props:{
         posts:{
             type: Array,
             default: () => []
+        },
+
+    },
+    computed:{
+        setPostCategoriesList(){
+            return this.$store.getters.getPostCategories
         }
+    
+    },
+
+    methods:{
+    },
+
+    mounted(){
+        this.$store.dispatch('getPostCategories');
+        
     }
     
 }
@@ -85,5 +109,15 @@ export default {
           }
       }
       
+  }
+
+
+  .category__lists{
+      display: flex;
+      justify-content: space-between;
+
+      &_item{
+          color: $color-primary;
+      }
   }
 </style>
