@@ -11,6 +11,14 @@
                 <button class="btn--primary" @click.prevent="submitForm()">Login</button>
             </form>
             
+            <div>
+              <p>Don't have an account?
+              <nuxt-link to="/auth/register">Register</nuxt-link></p>
+            </div>
+            <div>
+                 <p><nuxt-link to="/auth/forgot-password">Forgot Password?</nuxt-link></p>
+            </div>
+           
     </div>
     </div>
 </template>
