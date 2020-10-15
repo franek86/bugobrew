@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div class="blog__hero h--vh">
+    <div class="blog__hero">
       <div class="container">
         <h1 class="scale--h1">Blog</h1>
       </div>
@@ -48,6 +48,7 @@ import BlogList from '@/components/BlogList'
 <style lang="scss">
   .blog__hero {
     background-color: $color-primary;
+    text-align: center;
   }
 
 

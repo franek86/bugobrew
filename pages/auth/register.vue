@@ -1,16 +1,29 @@
 <template>
     <div class="h--vh">
         <div class="container">
-        
-            <form class="form">
-                <h1 class="text--red m-b-25">Registration</h1>
-                <input class="form__input" v-model="userInfo.username" type="name" placeholder="Username"  required>
             
-                <input class="form__input" v-model="userInfo.email" type="email" placeholder="Email"  required>
-                <input class="form__input" v-model="userInfo.password " type="password" placeholder="Password"  required>
-                <input class="form__input" v-model="userInfo.passwordConfirm " type="password" placeholder="Confirm password"  required>
-                <button class="btn--primary" @click.prevent="registerForm()">Registration</button>
-            </form>
+                <div class="register__form">
+                    <div class="error--message" v-if="error">
+                        <p>{{error}}</p>
+                    </div>
+
+                    <div class="success--message" v-if="success">
+                        <p>{{success}}</p>
+                    </div>
+
+                    <form class="form">
+
+                        <h1 class="text--red m-b-25">Create account</h1>
+                        <input class="form__input" v-model="username" type="name" placeholder="Username"  required>
+                        <input class="form__input" v-model="email" type="email" placeholder="Email"  required>
+                        <input class="form__input" v-model="password " type="password" placeholder="Password"  required>
+                        <button class="btn--primary" @click.prevent="registerForm()">Registration</button>
+                    </form>
+
+                
+                </div>
+           
+            
             
             
         </div>
@@ -27,26 +40,32 @@ export default {
 
     data(){
         return{
-            isValid:true,
+            error: false,
+            success:false,
             showPassword: false,
-            userInfo:{
-                username:'',
-                email:'',
-                password:'',
-                confirmPassword:''
-            }
-            
+            username:'',
+            email:'',
+            password:''
         }
     },
 
     methods:{
         async registerForm(){
+            this.error = null;
             try{
-                await this.$axios.post('http://localhost:1337/auth/local/register', this.userInfo );
-                this.$auth.login({data: this.userInfo})
-                this.$router.push({name: 'auth-login'})
+                await this.$axios.post('http://localhost:1337/auth/local/register',{
+                    username: this.username,
+                    email: this.email,
+                    password: this.password
+                } );
+
+                 this.success = `A confirmation link has been sent to your email account. \
+                                Please click on the link to complete the registration process.`;
+
+                //this.$auth.login({data: this.userInfo})
+                //this.$router.push({name: 'auth-login'})
             } catch(error){
-                console.log(error.response.data.message);
+                this.error = error.response.data.message[0].messages[0].message;
             }
             
         },
@@ -58,5 +77,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+    .register__form{
+        padding: $padding-32;
+        border-radius: 3px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    }
 </style>

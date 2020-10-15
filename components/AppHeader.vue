@@ -1,14 +1,14 @@
 <template>
     <header class="header">
        
-            <div class="grid columns-2">
+            <div class="grid header__grid align--center">
 
                 <div>
                     <Logo />
                 </div>
 
               
-                 <div>
+                 <div class="header__login">
                      <div class="login__nav">
                          <div v-if="isAuthenticated">
                              <div class="login__nav_user">{{loggedInUser.username}}</div>
@@ -16,8 +16,7 @@
                          </div>
                          
                          <div v-if="!isAuthenticated">
-                             <div><nuxt-link to="/auth/login">Login</nuxt-link></div>
-                             <div><nuxt-link to="/auth/register">Register</nuxt-link></div>
+                             <div class="login__nav_link login__icon fancy--hover"><nuxt-link to="/auth/login">Login</nuxt-link></div>
                          </div>
                      </div>
 
@@ -74,6 +73,25 @@ export default {
 </script>
 
 <style lang="scss">
-   
+    .header__grid{
+        grid-template-columns: 1fr 1fr 150px;
+    }
+
+    .header__login{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .login__nav_link{
+        background-color: $color-secondary;
+        padding: $padding-8 $padding-32;
+        border-radius: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+
+        a{
+            color: $color-white;
+            text-transform: uppercase;
+        }
+    }
 
 </style>

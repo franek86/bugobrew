@@ -1,22 +1,36 @@
 <template>
     <div class="h--vh">
         <div class="container">
-        
-            <form class="form">
-                <h1 class="text--red m-b-25">
-                    Login
-                </h1>
-                <input class="form__input" v-model="userInfo.identifier" type="email"  placeholder="Email">
-                <input class="form__input" v-model="userInfo.password " type="password"  placeholder="Password">
-                <button class="btn--primary" @click.prevent="submitForm()">Login</button>
-            </form>
-            
-            <div>
-              <p>Don't have an account?
-              <nuxt-link to="/auth/register">Register</nuxt-link></p>
-            </div>
-            <div>
-                 <p><nuxt-link to="/auth/forgot-password">Forgot Password?</nuxt-link></p>
+            <div class="grid columns-1 columns-m-2">
+                
+                <div class="login__form">
+                    <div class="error--message" v-if="error">
+                        <p>{{error}}</p>
+                    </div>
+
+                    <form class="form">
+
+                        <h1 class="text--red m-b-25">
+                            Login
+                        </h1>
+                        <input class="form__input" v-model="email" type="email"  placeholder="Email">
+                        <input class="form__input" v-model="password " type="password"  placeholder="Password">
+                        <button class="btn--primary" @click.prevent="submitForm()">Login</button>
+                    </form>
+                    
+                    <div class="register__link">
+                        <p>Don't have an account?
+                        <nuxt-link to="/auth/register">Register</nuxt-link></p>
+                    </div>
+
+                    <div class="forgot__link">
+                        <nuxt-link to="/auth/forgot-password">Forgot Password?</nuxt-link>
+                    </div>
+                </div>  
+
+                <div class="login__img">
+                    <img src="~/assets/img/login.svg" alt="">
+                </div>
             </div>
            
     </div>
@@ -31,23 +45,30 @@ export default {
 
     data(){
         return{
-            isValid: true,
+            success: false,
+            error: false,
             showPassword: false,
-            userInfo:{
-                identifier:'',
-                password:''
-            }
+            email:'',
+            password:''
         }
     },
 
     methods:{
     
         async submitForm(){
+            this.error = null;
            try{
-                await this.$auth.loginWith('local', { data: this.userInfo });
-                this.$router.push({name: 'admin'}) 
+               
+                let res = await this.$auth.loginWith('local', { 
+                    data:{
+                        identifier: this.email,
+                        password: this.password
+                    } 
+                });
+
+                //this.$router.push({name: 'admin'}) 
            } catch(error){
-               console.log(error.response.data.message);
+               this.error = error.response.data.message[0].messages[0].message;
            }
             
         }
@@ -57,13 +78,24 @@ export default {
 </script>
 
 <style lang="scss">
+    .login__img,
+    .login__form{
+        padding: $padding-32;
+        text-align: center;
+    }
+
+    .login__form{
+        box-shadow: 0 0 10px rgba(0,0,0,0.25);
+        border-radius: 3px;
+    }
+
     .form {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         max-width: 90vw;
-        margin: 0 auto;
+        margin: 0 auto $margin-32 auto;
 
         @media (min-width: $breakpoint-tablet){
             max-width: 70vw;
@@ -78,6 +110,25 @@ export default {
             display: block;
             width: 100%;
             margin-bottom: $margin-16;                                           
+        }
+    }
+
+    .register__link{
+        color: $color-black;
+        margin-bottom: $margin-16;
+
+        a{
+            color: $color-primary;
+            &:hover{
+                color: $color-third;
+            }
+        }
+    }
+
+    .forgot__link a{
+        color: $color-primary;
+        &:hover{
+            color: $color-third;
         }
     }
 </style>

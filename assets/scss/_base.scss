@@ -34,6 +34,10 @@ body{
         color: $color-primary;
     }
 
+    .align--center{
+        align-items:center;
+    }
+
     .blog__link{
         position: relative;
         display: block;
@@ -63,6 +67,6 @@ body{
         }
     }
 
-  
+    
 }
 

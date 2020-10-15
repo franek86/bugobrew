@@ -1,12 +1,5 @@
 <template>
     <div>
-        <div class="category__lists m-t-35">
-            <div class="category__lists_item" v-for="category in setPostCategoriesList" :key="category.id">
-                <input type="checkbox" :name="category.Category" :id="category.id" :value="category.id" v-model="theBrothers">
-                <label :for="category.Category">{{category.Category}}</label>
-                
-            </div>  
-        </div>
         
         <div class="grid column-1 columns-m-2 columns-l-3 blogs p-t-60 p-b-60">
            
@@ -16,6 +9,7 @@
                     <img :src="`http://localhost:1337${post.Image.url}`" alt="" />
                 </div>
 
+                
                 <div class="blogs__meta">
                     <div class="blogs__meta_date">{{post.Date | filterDate}}</div>
                     <div class="blogs__meta_author">By {{post.Author}}</div>
@@ -25,6 +19,7 @@
                     <h1>{{post.Title}}</h1>
                     <p>{{post.Excerpt}}</p>
                 </div>
+               
                 
                 </nuxt-link>
             </article>     
@@ -41,22 +36,7 @@ export default {
         posts:{
             type: Array,
             default: () => []
-        },
-
-    },
-    computed:{
-        setPostCategoriesList(){
-            return this.$store.getters.getPostCategories
         }
-    
-    },
-
-    methods:{
-    },
-
-    mounted(){
-        this.$store.dispatch('getPostCategories');
-        
     }
     
 }
@@ -78,34 +58,47 @@ export default {
       }
 
       &__cart{
-          padding: $padding-16;
+          border-radius: 10px;
           box-shadow: 0 2px 15px rgba($color-black, .25);
       }
 
       &__img{
-          height: 300px;
+          height: 200px;
           overflow: hidden;
 
           img{
               height: 100%;
+              border-top-left-radius: 10px;
+              border-top-right-radius: 10px;
               object-fit: cover;
               transition: transform .25s ease-in-out;
           }
 
       }
 
+      
+
       &__meta{
           display: flex;
+          padding-left: $padding-16;
+          padding-right: $padding-16;
 
           &_date,
           &_author{
               flex: 1;
-              font-size: 1.2rem;
-              color: $color-third;
+              font-size: 1em;
+              color: $color-grey;
           }
 
           &_author{
               text-align: right;
+          }
+      }
+
+      &__content{
+          padding: $padding-16;
+          p{
+              color:$color-third;
           }
       }
       

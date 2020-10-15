@@ -8,9 +8,30 @@
     cursor: pointer;
     border:1px solid $color-primary;
     transition: all .25s ease-in-out;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 
     &:hover{
         background-color: transparent;
         color: $color-primary;
     }
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.error--message,
+.success--message{
+    border-radius: 3px;
+    color:$color-white;
+    padding: $padding-8;
+}
+
+.error--message{
+    background-color: $color-primary;
+}
+
+.success--message{
+    background-color: $color-secondary;
 }
