@@ -1,23 +1,24 @@
 <template>
-  <div class="single__article container">
-   
-    <article class="single__article_box">
-      <div class="single__article_img" v-if="post.Image">
-          <img :src="`http://localhost:1337${post.Image.url}`" :alt="post.Image.alternativeText" />
-      </div>
-      <div class="single__article_heading">
-        <h1>{{post.Title}}</h1>
-        <p>{{post.Date}}</p>
-        <p>{{post.Author}}</p>
-      </div>
-      <div class="single__article_content">
+  <article class="article">
+    <div class="article__img" v-if="post.Image" :style="{ backgroundImage: `url(http://localhost:1337${post.Image.url})` }">
+    
+    </div>
+    <div class="grid columns-1 columns-m-2-1 container">
+    <div class="article__cart">
+
+      
+      <p class="article__cart_date">{{post.Date | moment("DD.MM.YYYY")}}</p>
+      <h1 class="article__cart_title">{{post.Title}}</h1>
+      <p class="article__cart_author">{{post.Author}}</p>
+      
+      <div class="article__cart_content">
         <p>{{post.Content}}</p>
       </div>
       
-      
-    </article>
+    </div>
+    </div>
    
-  </div>
+  </article>
 </template>
 
 <script>
@@ -44,8 +45,37 @@
 
 
 <style lang="scss" scoped>
-  .single__article_box{
-    background: $color-secondary;
+  .article{
+    &__img{
+        background-repeat: no-repeat;
+        height: 500px;
+        background-attachment: fixed;
+        background-position: 50% 50%;
+        background-size: cover;
+      }
+    &__cart{
+      text-align: left;
+      background-color: #ffffff;
+      width: 100%;
+      border-radius: 7px;
+      border: 1px solid #e8e8e8;
+      position: relative;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.08);
+      color:$color-black;
+      padding: $padding-32;
+      margin-top: -120px;
 
+      &_title{
+
+      }
+      &_date{
+        color: $color-grey;
+        margin-bottom: $margin-8;
+      }
+      &_author{
+        color: $color-grey;
+        margin-bottom: $margin-16;
+      }
+    }
   }
 </style>

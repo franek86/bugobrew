@@ -2,7 +2,8 @@
     <div>
         <section class="home__hero h--vh">
             <div class="container">
-                <h2>Welcome</h2>
+           <AppSwiper />
+            <h2>Welcome</h2>
                 <h1 class="scale--h1">Lorem</h1>
                 <h1 class="scale--h1">Ipsum</h1>
             </div>
@@ -36,15 +37,23 @@
 </template>
 
 <script>
+
+import AppSwiper from "@/components/AppSwiper"
+
 export default {
+    components:{
+        AppSwiper
+    },
+   
     computed:{
         latestPosts(){
             return this.$store.getters.getLatestPosts
         }
     },
+
     mounted(){
     this.$store.dispatch('getAllPosts');
-  }
+    }
 }
 </script>
 

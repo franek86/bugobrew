@@ -4,6 +4,10 @@
     .columns-m-3 {
         grid-template-columns: repeat(3, 1fr); 
     }
+    .columns-m-2-1 {
+        grid-template-columns: 2fr 1fr;
+    }
+
     .columns-m-2 {
         grid-template-columns: repeat(2, 1fr); 
     }
