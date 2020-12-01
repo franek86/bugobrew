@@ -11,7 +11,7 @@
 
                 
                 <div class="blogs__meta">
-                    <div class="blogs__meta_date">{{post.Date | filterDate}}</div>
+                    <div class="blogs__meta_date">{{post.Date | moment("DD.MM.YYYY")}}</div>
                     <div class="blogs__meta_author">By {{post.Author}}</div>
                 </div>
 

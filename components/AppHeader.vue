@@ -31,6 +31,7 @@
             <Nav>
                 <ul class="main__nav">
                     <li><nuxt-link to="/">Home</nuxt-link></li>
+                    <li><nuxt-link to="/products">Products</nuxt-link></li>
                     <li><nuxt-link to="/blogs">Blog</nuxt-link></li>
                     <li><nuxt-link to="/about">About</nuxt-link></li>
                     <li><nuxt-link to="/contact">Contact</nuxt-link></li>

@@ -47,7 +47,7 @@ export default {
    
     computed:{
         latestPosts(){
-            return this.$store.getters.getLatestPosts
+            return this.$store.getters.getAllPosts.slice(0,2);
         }
     },
 

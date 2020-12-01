@@ -1,3 +1,4 @@
+const URL = 'http://localhost:1337';
 
 export default {
   mode: 'universal',
@@ -49,7 +50,8 @@ export default {
   ** Axios modul congiguration
   */
   axios:{
-    baseURL:'http://localhost:1337'
+    proxy: true,
+    baseURL:  URL
   },
 
   auth: {
