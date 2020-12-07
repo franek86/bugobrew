@@ -19,6 +19,10 @@ export const getters = {
 
     getAllPosts: state => {
         return state.posts
+    },
+
+    getLatestPosts: state => {
+        return state.posts.slice(0,2)
     }
 }
 

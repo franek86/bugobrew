@@ -17,9 +17,8 @@
 <script>
 
 import BlogList from '@/components/BlogList'
-
-
- export default {
+import {mapState, mapActions} from 'vuex'
+export default {
 
   components: {
       BlogList,
@@ -27,16 +26,22 @@ import BlogList from '@/components/BlogList'
   },
 
   computed:{
-    posts(){
+    /*posts(){
       return this.$store.state.posts
-    }
+    }*/
+
+    ...mapState(['posts'])
    
     
   },
 
   mounted(){
-    this.$store.dispatch('getAllPosts');
+    this.getAllPosts();
     
+  },
+
+  methods:{
+    ...mapActions(['getAllPosts'])
   }
  }
 

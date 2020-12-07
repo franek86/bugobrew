@@ -14,7 +14,7 @@
                 <h2 class="text--red line--red m-b-25">Latest Blog</h2>
                 
                 <div class="grid columns-1 columns-m-2 latest__blog_flex">
-                    <article class="latest__blogs_cart" v-for="latestPost in latestPosts" :key="latestPost.id">
+                    <article class="latest__blogs_cart" v-for="latestPost in getLatestPosts" :key="latestPost.id">
                         <nuxt-link :to="{name:'blogs-id', params:{id: latestPost.id}}" class="blog__link">
                             <div class="blog__overlay">
                                 <div class="latest__blogs_content">
@@ -39,6 +39,7 @@
 <script>
 
 import AppSwiper from "@/components/AppSwiper"
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
     components:{
@@ -46,13 +47,18 @@ export default {
     },
    
     computed:{
-        latestPosts(){
+        /*latestPosts(){
             return this.$store.getters.getAllPosts.slice(0,2);
-        }
+        }*/
+        ...mapGetters(['getLatestPosts'])
     },
 
     mounted(){
-    this.$store.dispatch('getAllPosts');
+    this.getAllPosts()
+    },
+
+    methods:{
+        ...mapActions(['getAllPosts'])
     }
 }
 </script>

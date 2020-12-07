@@ -23,19 +23,23 @@
 
 <script>
 
-
- export default {
-
- 
-   
+import {mapState, mapActions} from 'vuex'
+export default {
+  
   computed:{
-    post(){
+    /*post(){
       return this.$store.state.post;
-    }
+    }*/
+
+    ...mapState(['post'])
   },
 
   mounted(){
-    this.$store.dispatch('getSinglePost', this.$route.params.id);
+    this.getSinglePost(this.$route.params.id);
+  },
+
+  methods:{
+    ...mapActions(['getSinglePost'])
   }
  }
 
