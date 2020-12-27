@@ -2,8 +2,8 @@
     <div class="container ">
         <div>
             <h3 class="mt-2">Categories</h3>
-            <div class="form-check" v-for="(category, index) in categories" :key="index">
-                <input class="form-check-input" type="checkbox" :value="category.id" :id="'category-'+index" v-model="selected.categories">
+            <div class="form-check" v-for="(category, index) in productCategories" :key="index">
+                <input class="form-check-input" type="checkbox" :value="category.id" :id="'category-'+index" v-model="selected">
                 <label class="form-check-label" style="color:black;" :for="'category-' + index">
                 {{ category.Category }}
                 </label>
@@ -30,38 +30,61 @@
 
 import axios from 'axios';
 import qs from 'qs';
+import {mapState, mapActions} from 'vuex';
 
 const baseURL = 'http://localhost:1337';
 
 export default {
+
+   
     
     data(){
         return{
-            products:[],
+            /*products:[],
             categories:[],
             selected:{
                 categories:[]
+            }*/
+        }
+    },
+
+    computed:{
+        ...mapState(['productCategories', 'products']),
+        selected:{
+            get(){
+                return this.$store.state.selected.categories;
+            },
+            set(value){
+               
+                this.$store.commit('SET_SELECTED', value)
             }
         }
+
     },
 
     watch:{
         selected:{
             handler: function(){
-                this.loadCategories();
-                this.loadProducts();
+                this.fetchAllProductsCategories();
+                this.fetchAllProducts();
             },
             deep: true
         }
     },
 
     mounted(){
-        this.loadCategories();
-        this.loadProducts();
+        this.fetchAllProductsCategories();
+        this.fetchAllProducts();
     },
 
     methods:{
-        loadCategories: function () {
+
+        ...mapActions([
+            'fetchAllProductsCategories',
+            'fetchAllProducts'
+            ]),
+        
+        /*loadCategories: function () {
             axios.get(`${baseURL}/product-categories`)
                 .then((response) => {
                     
@@ -85,7 +108,7 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
-        },
+        },*/
 
        
 
