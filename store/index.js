@@ -6,6 +6,7 @@ export const state = () => ({
   post: {},
   isNavOpen: false,
   products: [],
+  product: {},
   productCategories: [],
   selected: {
     categories: []
@@ -45,6 +46,10 @@ export const mutations = {
 
   SET_PRODUCTS(state, products) {
     state.products = products;
+  },
+
+  SET_SINGLE_PRODUCT(state, product) {
+    state.product = product;
   },
 
   SET_SELECTED(state, value) {
@@ -92,6 +97,15 @@ export const actions = {
       });
 
       commit("SET_PRODUCTS", res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async fetchSingleProduct({ commit }, params) {
+    try {
+      let res = await axios.get(`${baseURL}/products/${params}`);
+      commit("SET_SINGLE_PRODUCT", res.data);
     } catch (error) {
       console.log(error);
     }
