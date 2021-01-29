@@ -2,18 +2,19 @@
     <div>
         <section class="home__hero h--vh">
             <div class="container">
-           <AppSwiper />
-            <h2>Welcome</h2>
-                <h1 class="scale--h1">Lorem</h1>
-                <h1 class="scale--h1">Ipsum</h1>
+                <div class="grid columns-2">
+                    <h1 class="title bold">Welcome lorem ipsum</h1>
+                    <div></div>
+                </div>
+                
             </div>
         </section>
 
-        <section class="latest__blogs p-t-60 p-b-60">
+        <section class="latest__blogs bg--secondary p-t-60 p-b-60">
             <div class="container">
-                <h2 class="text--red line--red m-b-25">Latest Blog</h2>
+                <h2 class="title m-b-25">Latest Blog</h2>
                 
-                <div class="grid columns-1 columns-m-2 latest__blog_flex">
+                <div class="grid columns-1 columns-l-3">
                     <article class="latest__blogs_cart" v-for="latestPost in getLatestPosts" :key="latestPost.id">
                         <nuxt-link :to="{name:'blogs-id', params:{id: latestPost.id}}" class="blog__link">
                             <div class="blog__overlay">
@@ -31,6 +32,8 @@
             </div>
 
         </section>
+
+        <section></section>
 
     </div>
 
@@ -64,9 +67,11 @@ export default {
 </script>
 
 <style lang="scss">
-    .home__hero{
-        background-color: $color-primary;
+    /*BIG TABELS VIEW min width 1024 px*/
+@media (min-width: $breakpoint-desktop){
+    .latest__blogs_cart:first-child{
+        grid-column: 1/3;
+        grid-row: 1/3;
     }
-
-  
+}
 </style>

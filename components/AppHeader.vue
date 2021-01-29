@@ -12,11 +12,12 @@
                      <div class="login__nav">
                          <div v-if="isAuthenticated">
                              <div class="login__nav_user">{{loggedInUser.username}}</div>
+                             <div v-if="isAdmin">{{isAdmin}}</div>
                              <div class="logout" @click.prevent="logout">Logout</div>
                          </div>
                          
                          <div v-if="!isAuthenticated">
-                             <div class="login__nav_link login__icon fancy--hover"><nuxt-link to="/auth/login">Login</nuxt-link></div>
+                             <div class="btn--secondary"><nuxt-link to="/auth/login">Login</nuxt-link></div>
                          </div>
                      </div>
 
@@ -57,7 +58,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser'])
+    ...mapGetters(['isAuthenticated', 'loggedInUser', 'isAdmin'])
   },
   
   methods:{
@@ -76,6 +77,7 @@ export default {
 <style lang="scss">
     .header__grid{
         grid-template-columns: 1fr 1fr 150px;
+        height:100%;
     }
 
     .header__login{
@@ -83,16 +85,6 @@ export default {
         justify-content: flex-end;
     }
 
-    .login__nav_link{
-        background-color: $color-secondary;
-        padding: $padding-8 $padding-32;
-        border-radius: 30px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-
-        a{
-            color: $color-white;
-            text-transform: uppercase;
-        }
-    }
+    
 
 </style>

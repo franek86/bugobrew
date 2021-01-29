@@ -1,5 +1,8 @@
 <template>
-    <div class="logo">Logo</div>
+    <nuxt-link to="/">
+        <div class="logo">Logo</div>
+    </nuxt-link>
+    
 </template>
 
 <script>

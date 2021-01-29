@@ -22,12 +22,16 @@ export const getters = {
     return state.auth.user;
   },
 
+  isAdmin(state) {
+    return state.auth.user.role.type === "admin";
+  },
+
   getAllPosts: state => {
     return state.posts;
   },
 
   getLatestPosts: state => {
-    return state.posts.slice(0, 2);
+    return state.posts.slice(0, 3);
   }
 };
 

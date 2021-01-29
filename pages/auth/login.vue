@@ -56,18 +56,20 @@ export default {
     methods:{
     
         async submitForm(){
-            this.error = null;
+            //this.error = null;
            try{
-               
-                let res = await this.$auth.loginWith('local', { 
+              
+                await this.$auth.loginWith('local', { 
+                   
                     data:{
                         identifier: this.email,
                         password: this.password
-                    } 
+                    }
                 });
 
-                //this.$router.push({name: 'admin'}) 
+                
            } catch(error){
+        
                this.error = error.response.data.message[0].messages[0].message;
            }
             

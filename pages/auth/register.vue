@@ -53,17 +53,18 @@ export default {
         async registerForm(){
             this.error = null;
             try{
+                this.$axios.setToken(false);
                 await this.$axios.post('http://localhost:1337/auth/local/register',{
                     username: this.username,
                     email: this.email,
                     password: this.password
                 } );
 
-                 this.success = `A confirmation link has been sent to your email account. \
-                                Please click on the link to complete the registration process.`;
+                 /*this.success = `A confirmation link has been sent to your email account. \
+                                Please click on the link to complete the registration process.`;*/
 
-                //this.$auth.login({data: this.userInfo})
-                //this.$router.push({name: 'auth-login'})
+                
+                this.$router.push({name: 'auth-login'})
             } catch(error){
                 this.error = error.response.data.message[0].messages[0].message;
             }

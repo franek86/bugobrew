@@ -5,14 +5,20 @@
 body{
     font-family: 'Mukta', sans-serif;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 1.6;
-    color: $color-white;
+    font-size: $default-font-size;
+    line-height: 1.05;
+    color: $color-text;
+
+    p{
+        line-height: 1.6;
+    }
     
 }
 
-.scale--h1{
-    font-size: 3rem;
+.title{
+    font-size: 3.6rem;
+}
+
+.bold{
     font-weight: 600;
-    color: $color-white;
 }

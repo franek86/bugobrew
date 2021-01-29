@@ -30,10 +30,6 @@ body{
         align-items: center;        
     }
 
-    .text--red{
-        color: $color-primary;
-    }
-
     .align--center{
         align-items:center;
     }
@@ -65,6 +61,10 @@ body{
         h1{
             color: $color-white;
         }
+    }
+
+    .bg--secondary{
+        background-color: $color-secondary;
     }
 
     
