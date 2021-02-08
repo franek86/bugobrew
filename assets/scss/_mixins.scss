@@ -1,0 +1,43 @@
+$columns: 12;
+
+@for $i from 1 through $columns {
+    .col-#{$i}{
+        
+       $multiplier: $i / $columns;
+        flex: 0 0 100% / $columns * $i;
+        max-width: calc(100% * #{$multiplier} - #{$grid-gutter});
+
+       // $multiplier: $i / $columns;
+        //width: calc(100% * #{$multiplier} - #{$grid-gutter} * (1 - #{$multiplier}));
+  
+        
+    }
+}
+
+
+/* nav transition */
+@mixin navItemTransition {
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        transition: all .4s #{$i * .3}s ease;
+      }
+    }
+  }
+
+
+
+/* padding and margin helpers*/
+$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 75, 100); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+  
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
