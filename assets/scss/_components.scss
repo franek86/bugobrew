@@ -53,3 +53,27 @@
     background-color: $color-secondary;
 }
 
+.underline{
+    position:relative;
+    display: inline-block;
+
+    &:after{
+        content:"";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0px;
+        height: 8px;
+        background-color: $color-primary;
+        border-radius: 4px;
+        transform: rotate(-1deg);
+        z-index: -1;
+
+    }
+}
+
+.readmore a{
+    font-size: 1.8rem;
+    color:$color-text;
+}
+
