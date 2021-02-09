@@ -31,7 +31,7 @@ export const getters = {
   },
 
   getLatestPosts: state => {
-    return state.posts.slice(0, 3);
+    return state.posts.slice(0, 2);
   }
 };
 

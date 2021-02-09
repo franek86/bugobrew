@@ -3,7 +3,7 @@
         <section class="home__hero h--vh">
             <div class="container">
                 <div class="grid columns-2">
-                    <h1 class="title bold">Welcome <span class="underline">lorem</span> ipsum</h1>
+                    <h1 class="f1 bold">Welcome <span class="underline">lorem</span> ipsum</h1>
                     <div></div>
                 </div>
                 
@@ -12,32 +12,39 @@
 
         <section class="latest__blogs bg--secondary p-t-60 p-b-60">
             <div class="container">
-                <h2 class="title m-b-25">Latest Blog</h2>
-                
-                <div class="grid columns-1 columns-l-3">
-                    <article class="latest__blogs_cart" v-for="latestPost in getLatestPosts" :key="latestPost.id">
-                        <nuxt-link :to="{name:'blogs-id', params:{id: latestPost.id}}" class="blog__link">
-
-
+                <h2 class="f2 m-b-75">Latest Blog</h2>
+            
+                <article class="latest__blogs_cart grid columns-m-2 m-b-50" v-for="latestPost in getLatestPosts" :key="latestPost.id">
+                    <nuxt-link :to="{name:'blogs-id', params:{id: latestPost.id}}">
+                        <div class="m-b-20">
+                            <h1 class="text--dark f4 m-b-10">{{latestPost.Title}}</h1>
+                            
                             <div class="latest__blogs_img">
-                                <div class="latest__blogs_date">{{latestPost.Date | moment("DD.MMM")}}</div>
                                 <img :src="`http://localhost:1337${latestPost.Image.url}`" alt="" />
                             </div>
                             
-                            <div class="latest__blogs_content">
-                                <h1>{{latestPost.Title}}</h1>
-                            </div>
+                        </div>
+                    </nuxt-link>
+                    
+                    <div class="latest__blogs_content">
+                        <div class="latest__blogs_date f3">{{latestPost.Date | moment("DD.MM.YYYY")}}</div>
+                        <p class="p-t-15">{{latestPost.Excerpt}}</p>
 
-                            <div class="readmore">
-                                <nuxt-link :to="{name:'blogs-id', params:{id: latestPost.id}}" class="blog__link"> 
-                                    Read More
-                                </nuxt-link>
+                       
+                        <nuxt-link :to="{name:'blogs-id', params:{id: latestPost.id}}"> 
+                            <div class="slide-button m-t-30">
+                                
+                                <div class="slide-button__text">Read More</div>
+                        
                             </div>
-                            
-                            
                         </nuxt-link>
-                    </article>
-                </div>
+                            
+                    </div>
+
+                    
+                        
+                </article>
+                
             </div>
 
         </section>
@@ -79,25 +86,30 @@ export default {
 
 .latest__blogs_img{
     position: relative;
-    display: block;
+    padding-bottom: 60%;
+
+    img{
+        position: absolute;
+        top: 0;
+        border: 0;
+        right: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center center; 
+    }
+}
+
+.latest__blogs_content{
+    display: grid;
+    align-content: center;
 }
 
 .latest__blogs_date{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    background-color: rgba($color: #000000, $alpha: 0.4);
-    font-size: 2.2rem;
-    padding: 10px;
-    color:$color-grey;
+    color: $color-grey;
 }
 
 
-    /*BIG TABELS VIEW min width 1024 px*/
-@media (min-width: $breakpoint-desktop){
-    .latest__blogs_cart:first-child{
-        grid-column: 1/3;
-        grid-row: 1/3;
-    }
-}
+
 </style>

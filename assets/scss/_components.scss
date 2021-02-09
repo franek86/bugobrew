@@ -72,8 +72,15 @@
     }
 }
 
-.readmore a{
-    font-size: 1.8rem;
-    color:$color-text;
+.slide-button {
+    width: 224px;
+    height: 40px;
+    position: relative;
+    transition: transform .75s cubic-bezier(.215,.61,.355,1);
+    transition-delay: .1s;
+    overflow: hidden;
+
+
+
 }
 
