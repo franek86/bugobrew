@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "name": "Article"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Content": {
+      "type": "richtext"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "date"
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Author": {
+      "type": "string"
+    },
+    "media": {
+      "collection": "media",
+      "via": "articles"
+    },
+    "Excerpt": {
+      "type": "text"
+    },
+    "Slug": {
+      "type": "string"
+    },
+    "blog_categories": {
+      "via": "article",
+      "collection": "blog-categories"
+    }
+  }
+}

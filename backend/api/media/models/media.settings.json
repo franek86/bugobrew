@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "media",
+  "info": {
+    "name": "Media"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "articles": {
+      "via": "media",
+      "collection": "blog",
+      "dominant": true
+    },
+    "Content": {
+      "type": "richtext"
+    }
+  }
+}
