@@ -1,0 +1,28 @@
+{
+  "name": "bugobrew",
+  "version": "1.0.0",
+  "description": "Bugobrew is an independent craft brewery.",
+  "author": "franek86",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.10.3",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "nuxt": "^2.0.0",
+    "qs": "^6.9.4",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "swiper": "^6.3.5",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-moment": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

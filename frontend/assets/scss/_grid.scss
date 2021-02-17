@@ -1,0 +1,58 @@
+.container {
+  max-width: $grid-width;
+  width: 100%;
+  padding: 0 $padding-8;
+  margin: 0 auto;
+}
+
+[class^="col-"] {
+  margin-right: $margin-16;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex--col {
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.columns-6 {
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+}
+.columns-5 {
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+}
+.columns-4 {
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+.columns-3 {
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+}
+.columns-2 {
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+.columns-1 {
+  grid-template-columns: 1fr;
+  width: 100%;
+}

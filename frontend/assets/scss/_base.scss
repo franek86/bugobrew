@@ -1,0 +1,52 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem is 10px; 10px/16px(default browsee font) = 62.5%
+}
+
+body {
+  box-sizing: border-box;
+
+  li,
+  ul,
+  ol,
+  a {
+    list-style: none;
+    text-decoration: none;
+  }
+
+  img {
+    width: 100%;
+    display: block;
+  }
+
+  .h--vh {
+    min-height: calc(100vh - 10rem);
+    display: flex;
+    align-items: center;
+  }
+
+  .align--center {
+    align-items: center;
+  }
+
+  .blog__link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+
+  .bg--secondary {
+    background-color: $color-secondary;
+  }
+
+  .bg--third {
+    background-color: $color-third;
+  }
+}
