@@ -1,10 +1,6 @@
 <template>
   <div>
-    <div class="blog__hero">
-      <div class="container">
-        <h1 class="scale--h1">Blog</h1>
-      </div>
-    </div>
+    <TheHero text="Blog" />
     <div class="container">
       <BlogList :blogs="blogs" />
     </div>
@@ -13,10 +9,14 @@
 
 <script>
 import BlogList from "@/components/BlogList";
+import TheHero from "../../components/UI/TheHero";
+
 import { mapState, mapActions } from "vuex";
+
 export default {
   components: {
-    BlogList
+    BlogList,
+    TheHero
   },
 
   computed: {
@@ -37,9 +37,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.blog__hero {
-  background-color: $color-primary;
-  text-align: center;
-}
-</style>
+<style lang="scss"></style>

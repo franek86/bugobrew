@@ -8,13 +8,19 @@
       }"
     ></div>
     <div class="grid columns-1 columns-m-2-1 container">
-      <div class="article__cart">
-        <p class="article__cart_date">{{ blog.Date | moment("DD.MM.YYYY") }}</p>
-        <h1 class="article__cart_title">{{ blog.Title }}</h1>
-        <p class="article__cart_author">{{ blog.Author }}</p>
+      <div class="article__cart m-b-50">
+        <div class="flex flex--between align--center">
+          <p class="article__date">
+            {{ blog.Date | moment("DD.MM.YYYY") }}
+          </p>
+          <a class="link--primary" @click="$router.go(-1)">Back</a>
+        </div>
 
-        <div class="article__cart_content">
-          <p>{{ blog.Content }}</p>
+        <h1 class="f2 article__title m-b-20">{{ blog.Title }}</h1>
+        <p class="article__author">{{ blog.Author }}</p>
+
+        <div class="article__content">
+          {{ blog.Content }}
         </div>
       </div>
     </div>
@@ -53,26 +59,27 @@ export default {
   }
   &__cart {
     text-align: left;
-    background-color: #ffffff;
+    background-color: $color-white;
     width: 100%;
     border-radius: 7px;
     border: 1px solid #e8e8e8;
     position: relative;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: $box-shadow;
     color: $color-black;
     padding: $padding-32;
-    margin-top: -120px;
-
-    &_title {
-    }
-    &_date {
-      color: $color-grey;
-      margin-bottom: $margin-8;
-    }
-    &_author {
-      color: $color-grey;
-      margin-bottom: $margin-16;
-    }
+    margin-top: -25rem;
+  }
+  &__content {
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  &__date {
+    color: $color-grey;
+    margin-bottom: $margin-8;
+  }
+  &__author {
+    color: $color-grey;
+    margin-bottom: $margin-16;
   }
 }
 </style>

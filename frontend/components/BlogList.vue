@@ -1,24 +1,30 @@
 <template>
   <div>
-    <div class="grid column-1 columns-m-2 columns-l-3 blogs p-t-60 p-b-60">
-      <article class="blogs__cart" v-for="blog in blogs" :key="blog.id">
-        <nuxt-link :to="{ name: 'blogs-id', params: { id: blog.id } }">
-          <div class="blogs__img m-b-20">
-            <img :src="`http://localhost:1337${blog.Image.url}`" alt="" />
-          </div>
+    <div class="grid column-1 columns-m-2 columns-l-3 p-t-60 p-b-60">
+      <article
+        class="blog_cart relative m-b-40"
+        v-for="blog in blogs"
+        :key="blog.id"
+      >
+        <nuxt-link
+          :to="{ name: 'blogs-id', params: { id: blog.id } }"
+          class="cart--link"
+        ></nuxt-link>
+        <div class="blog_cart__img m-b-20">
+          <img :src="`http://localhost:1337${blog.Image.url}`" alt="" />
+        </div>
 
-          <div class="blogs__meta">
-            <div class="blogs__meta_date">
-              {{ blog.Date | moment("DD.MM.YYYY") }}
-            </div>
-            <div class="blogs__meta_author">By {{ blog.Author }}</div>
+        <div class="blog_cart__meta">
+          <div class="blog_cart__date">
+            {{ blog.Date | moment("DD.MM.YYYY") }}
           </div>
+          <div class="blog_cart__author">{{ blog.Author }}</div>
+        </div>
 
-          <div class="blogs__content">
-            <h1>{{ blog.Title }}</h1>
-            <p>{{ blog.Excerpt }}</p>
-          </div>
-        </nuxt-link>
+        <div class="blog_cart__content">
+          <h1 class="f5 m-b-20">{{ blog.Title }}</h1>
+          <p>{{ blog.Excerpt }}</p>
+        </div>
       </article>
     </div>
   </div>
@@ -36,23 +42,19 @@ export default {
 </script>
 
 <style lang="scss">
-.blogs {
-  a {
-    color: $color-black;
+.blog_cart {
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+  transition: transform 0.4s ease-in-out;
 
-    &:hover {
-      .blogs__img img {
+  &:hover {
+    transform: translateY(-3px);
+
+    &__img {
+      img {
         transform: scale(1.1);
       }
-      .blogs__content h1 {
-        color: $color-secondary;
-      }
     }
-  }
-
-  &__cart {
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba($color-black, 0.25);
   }
 
   &__img {
@@ -72,17 +74,17 @@ export default {
     display: flex;
     padding-left: $padding-16;
     padding-right: $padding-16;
+  }
 
-    &_date,
-    &_author {
-      flex: 1;
-      font-size: 1em;
-      color: $color-grey;
-    }
+  &__date,
+  &__author {
+    flex: 1;
+    font-size: 1em;
+    color: $color-grey;
+  }
 
-    &_author {
-      text-align: right;
-    }
+  &__author {
+    text-align: right;
   }
 
   &__content {

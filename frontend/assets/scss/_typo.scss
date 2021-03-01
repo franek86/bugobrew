@@ -1,52 +1,54 @@
 @import "../fonts/font.css";
 
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: $default-font-size;
+  line-height: 1.05;
+  color: $color-text;
 
-
-body{
-    font-family: 'Mukta', sans-serif;
-    font-weight: 400;
-    font-size: $default-font-size;
-    line-height: 1.05;
-    color: $color-text;
-
-    p{
-        line-height: 1.6;
-    }
-    
+  p {
+    line-height: 1.6;
+  }
 }
 
-.f1{
-    font-size: 5.2rem;
+.f1 {
+  font-size: 5.2rem;
 }
 
-.f2{
-    font-size: 4.2rem;
+.f2 {
+  font-size: 4.2rem;
 }
 
-.f3{
-    font-size: 3.4rem;
+.f3 {
+  font-size: 3.4rem;
 }
 
-.f4{
-    font-size: 2.5rem;
+.f4 {
+  font-size: 2.5rem;
 }
 
-.f5{
-    font-size: 1.8rem;
+.f5 {
+  font-size: 1.8rem;
 }
 
-.f1,.f2,.f3,.f4,.f5,.f6{
-    line-height: 1.08;
+.f1,
+.f2,
+.f3,
+.f4,
+.f5,
+.f6 {
+  line-height: 1.08;
 }
 
-.bold{
-    font-weight: 600;
+.bold {
+  font-weight: 600;
 }
 
-.uppercase{
-    text-decoration: uppercase;
+.uppercase {
+  text-decoration: uppercase;
 }
 
-.text--dark{
-    color: $color-text;
+.text--dark {
+  color: $color-text;
 }

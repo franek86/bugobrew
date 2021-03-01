@@ -26,14 +26,18 @@ body {
     display: block;
   }
 
+  .relative {
+    position: relative;
+  }
+
   .h--vh {
     min-height: calc(100vh - 10rem);
     display: flex;
     align-items: center;
   }
 
-  .align--center {
-    align-items: center;
+  .text--center {
+    text-align: center;
   }
 
   .blog__link {
