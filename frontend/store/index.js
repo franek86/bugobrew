@@ -2,8 +2,8 @@ import axios from "axios";
 const baseURL = "http://localhost:1337";
 
 export const state = () => ({
-  posts: [],
-  post: {},
+  blogs: [],
+  blog: {},
   isNavOpen: false,
   products: [],
   product: {},
@@ -26,22 +26,22 @@ export const getters = {
     return state.auth.user.role.type === "admin";
   },
 
-  getAllPosts: state => {
-    return state.posts;
+  getAllBlogs(state) {
+    return state.blogs;
   },
 
-  getLatestPosts: state => {
-    return state.posts.slice(0, 2);
+  getLatestBlogs(state) {
+    return state.blogs.slice(0, 2);
   }
 };
 
 export const mutations = {
-  SET_POSTS(state, posts) {
-    state.posts = posts;
+  SET_BLOGS(state, blogs) {
+    state.blogs = blogs;
   },
 
-  SET_SINGLE_POST(state, post) {
-    state.post = post;
+  SET_SINGLE_BLOG(state, blog) {
+    state.blog = blog;
   },
 
   SET_PRODUCTS_CATEGORIES(state, payload) {
@@ -66,20 +66,20 @@ export const mutations = {
 };
 
 export const actions = {
-  async getAllPosts({ commit }) {
+  async getAllBlogs({ commit }) {
     try {
       let res = await axios.get(`${baseURL}/blogs/?_sort=id:DESC`);
-      commit("SET_POSTS", res.data);
+      commit("SET_BLOGS", res.data);
     } catch (error) {
       console.log(error);
     }
   },
 
-  async getSinglePost({ commit }, params) {
+  async getSingleBlog({ commit }, params) {
     try {
       let res = await axios.get(`${baseURL}/blogs/${params}`);
 
-      commit("SET_SINGLE_POST", res.data);
+      commit("SET_SINGLE_BLOG", res.data);
     } catch (error) {
       console.log(error);
     }

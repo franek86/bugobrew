@@ -1,60 +1,45 @@
 <template>
   <div>
-
     <div class="blog__hero">
       <div class="container">
         <h1 class="scale--h1">Blog</h1>
       </div>
     </div>
-  <div class="container">
-
-    <BlogList :posts='posts'/>
-  
-  </div>
+    <div class="container">
+      <BlogList :blogs="blogs" />
+    </div>
   </div>
 </template>
 
 <script>
-
-import BlogList from '@/components/BlogList'
-import {mapState, mapActions} from 'vuex'
+import BlogList from "@/components/BlogList";
+import { mapState, mapActions } from "vuex";
 export default {
-
   components: {
-      BlogList,
-      
+    BlogList
   },
 
-  computed:{
+  computed: {
     /*posts(){
       return this.$store.state.posts
     }*/
 
-    ...mapState(['posts'])
-   
-    
+    ...mapState(["blogs"])
   },
 
-  mounted(){
-    this.getAllPosts();
-    
+  mounted() {
+    this.getAllBlogs();
   },
 
-  methods:{
-    ...mapActions(['getAllPosts'])
+  methods: {
+    ...mapActions(["getAllBlogs"])
   }
- }
-
-
-
+};
 </script>
 
-
 <style lang="scss">
-  .blog__hero {
-    background-color: $color-primary;
-    text-align: center;
-  }
-
-
+.blog__hero {
+  background-color: $color-primary;
+  text-align: center;
+}
 </style>
