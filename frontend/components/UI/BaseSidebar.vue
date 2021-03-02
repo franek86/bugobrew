@@ -20,7 +20,7 @@ export default {
     title: {
       type: String,
       required: false,
-      defualt: "Sidebar"
+      default: "Sidebar"
     }
   }
 };
