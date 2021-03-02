@@ -23,13 +23,19 @@
           {{ blog.Content }}
         </div>
       </div>
+
+      <base-sidebar title="test">
+        <template default> <p>from sidebar component with slot</p></template>
+      </base-sidebar>
     </div>
   </article>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
+import BaseSidebar from "../../components/UI/BaseSidebar.vue";
 export default {
+  components: { BaseSidebar },
   computed: {
     /*post(){
       return this.$store.state.post;
