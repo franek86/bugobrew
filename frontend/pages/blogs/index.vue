@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import BlogList from "@/components/BlogList";
-import TheHero from "../../components/UI/TheHero";
+import BlogList from "@/components/blog/BlogList";
+import TheHero from "@/components/UI/TheHero";
 
 import { mapState, mapActions } from "vuex";
 

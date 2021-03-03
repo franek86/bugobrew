@@ -31,6 +31,7 @@ export default {
   width: 100%;
   background-color: $color-secondary;
   padding: $padding-10;
-  border-radius: 7px;
+  border-radius: $radius-small;
+  box-shadow: $box-shadow;
 }</style
 >>

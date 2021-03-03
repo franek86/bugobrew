@@ -37,10 +37,6 @@ import BaseSidebar from "../../components/UI/BaseSidebar.vue";
 export default {
   components: { BaseSidebar },
   computed: {
-    /*post(){
-      return this.$store.state.post;
-    }*/
-
     ...mapState(["blog"])
   },
 
