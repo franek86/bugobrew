@@ -138,3 +138,62 @@
     z-index: -1;
   }
 }
+
+.form_check {
+  display: block;
+  position: relative;
+  padding-left: $padding-20;
+  margin-bottom: $margin-16;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .form_check__custom {
+      background-color: $color-white;
+      border: 1px solid $color-white;
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  &__label {
+    font-size: 1.4rem;
+    line-height: 16px;
+    font-weight: 700;
+  }
+
+  &__custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    border: 1px solid $color-black;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+
+      left: 4px;
+      top: 1px;
+      width: 6px;
+      height: 9px;
+      border: solid $color-black;
+      border-width: 0 2px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+}

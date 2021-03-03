@@ -1,7 +1,7 @@
 <template>
   <article class="article">
     <div
-      class="article__img"
+      class="article__img m-b-20"
       v-if="blog.Image"
       :style="{
         backgroundImage: `url(http://localhost:1337${blog.Image.url})`

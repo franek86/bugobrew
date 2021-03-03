@@ -1,9 +1,9 @@
 <template>
   <div>
-    <aside class="sidebar m-t-20">
+    <aside class="sidebar">
       <header>
         <slot name="header">
-          <div class="f5 m-b-20">{{ title }}</div>
+          <div class="f6 m-b-20 bold uppercase">{{ title }}</div>
         </slot>
       </header>
 
@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
-  min-width: 320px;
+  width: 100%;
   background-color: $color-secondary;
   padding: $padding-10;
   border-radius: 7px;
