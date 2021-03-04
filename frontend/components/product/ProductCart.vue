@@ -1,17 +1,24 @@
 <template>
   <div>
-    <article class="product_cart m-b-30">
+    <article class="product_cart m-b-30 has--transition img--zoom">
       <nuxt-link :to="{ name: 'products-id', params: { id: id } }">
         <div class="product_cart__img m-b-20">
           <img :src="`http://localhost:1337${imgUrl}`" alt="" />
         </div>
 
         <h1 class="product_cart__title m-b-10">{{ title }}</h1>
-        <div class="product_cart__price f5 m-b-20">{{ price }} kn</div>
+        <div class="product_cart__price f5 m-b-20">{{ price }} &euro;</div>
       </nuxt-link>
-      <div>
-        <div class="btn--primary m-b-20">
-          Add to cart
+      <div class="flex flex--between">
+        <nuxt-link
+          :to="{ name: 'products-id', params: { id: id } }"
+          class="link--primary m-b-20"
+        >
+          View
+        </nuxt-link>
+
+        <div class="product_cart__add">
+          <img src="~/assets/img/plus-min.svg" alt="Plus svg icon" />
         </div>
       </div>
     </article>
@@ -52,6 +59,20 @@ export default {
     color: $color-black;
     // font-weight: 700;
     text-align: center;
+  }
+
+  &__add {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 5px;
+    border: 1px solid $color-black;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: $color-secondary;
+      border: 1px solid $color-secondary;
+    }
   }
 }
 </style>

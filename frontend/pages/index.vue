@@ -16,7 +16,7 @@
         <h3 class="f3 m-b-75 text--center">News</h3>
 
         <article
-          class="news_cart grid columns-m-1-2 m-b-50 relative"
+          class="news_cart grid columns-m-1-2 m-b-50 relative has--transition img--zoom"
           v-for="latestBlog in getLatestBlogs"
           :key="latestBlog.id"
         >
@@ -37,7 +37,7 @@
 
             <nuxt-link
               :to="{ name: 'blogs-id', params: { id: latestBlog.id } }"
-              class="btn--default m-t-20"
+              class="link--primary m-t-20"
             >
               Read more
             </nuxt-link>
@@ -88,10 +88,6 @@ export default {
   box-shadow: $box-shadow;
   transition: transform 0.4s ease-in-out;
   padding: $padding-10 0;
-
-  &:hover {
-    transform: translateY(-3px);
-  }
 
   &__img {
     position: relative;

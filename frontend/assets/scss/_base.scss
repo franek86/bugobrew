@@ -26,6 +26,17 @@ body {
     display: block;
   }
 
+  .img--zoom {
+    img {
+      transition: transform 0.4s ease-in-out;
+    }
+    &:hover {
+      img {
+        transform: scale(1.02);
+      }
+    }
+  }
+
   .relative {
     position: relative;
   }
@@ -52,5 +63,13 @@ body {
 
   .bg--third {
     background-color: $color-third;
+  }
+
+  .has--transition {
+    transition: transform 0.4s ease-in-out;
+    &:hover {
+      transform: translateY(-3px);
+      will-change: transform;
+    }
   }
 }

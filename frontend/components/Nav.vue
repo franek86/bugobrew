@@ -64,11 +64,9 @@ export default {
   height: 100vh;
   background-color: rgba($color: #000000, $alpha: 0.4);
   transform: translateX(100%);
-  transition: transform 0.2s ease-in-out 0s;
 
   &_active {
     transform: translateX(0%);
-    transition: transform 0.15s ease-in-out 0s;
   }
 }
 

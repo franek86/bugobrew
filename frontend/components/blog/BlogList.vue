@@ -2,7 +2,7 @@
   <div>
     <div class="grid column-1 columns-m-2 columns-l-3 p-t-60 p-b-60">
       <article
-        class="blog_cart relative m-b-40"
+        class="blog_cart relative m-b-40 has--transition img--zoom"
         v-for="blog in blogs"
         :key="blog.id"
       >
@@ -14,16 +14,22 @@
           <img :src="`http://localhost:1337${blog.Image.url}`" alt="" />
         </div>
 
-        <div class="blog_cart__meta">
-          <div class="blog_cart__date">
-            {{ blog.Date | moment("DD.MM.YYYY") }}
+        <div class="p-l-15 p-r-15">
+          <div class="blog_cart__meta m-b-15">
+            <div class="blog_cart__date">
+              {{ blog.Date | moment("DD.MM.YYYY") }}
+            </div>
+            <div class="blog_cart__author">{{ blog.Author }}</div>
           </div>
-          <div class="blog_cart__author">{{ blog.Author }}</div>
-        </div>
 
-        <div class="blog_cart__content">
-          <h1 class="f5 m-b-20">{{ blog.Title }}</h1>
-          <p>{{ blog.Excerpt }}</p>
+          <div class="blog_cart__content">
+            <h1 class="f5 m-b-20">{{ blog.Title }}</h1>
+            <p>{{ blog.Excerpt }}</p>
+          </div>
+
+          <div class="link--primary m-b-15">
+            Read
+          </div>
         </div>
       </article>
     </div>
@@ -45,17 +51,6 @@ export default {
 .blog_cart {
   border-radius: 10px;
   box-shadow: $box-shadow;
-  transition: transform 0.4s ease-in-out;
-
-  &:hover {
-    transform: translateY(-3px);
-
-    &__img {
-      img {
-        transform: scale(1.1);
-      }
-    }
-  }
 
   &__img {
     height: 200px;
@@ -72,8 +67,6 @@ export default {
 
   &__meta {
     display: flex;
-    padding-left: $padding-16;
-    padding-right: $padding-16;
   }
 
   &__date,
@@ -88,7 +81,7 @@ export default {
   }
 
   &__content {
-    padding: $padding-16;
+    min-height: 200px;
     p {
       color: $color-third;
     }
