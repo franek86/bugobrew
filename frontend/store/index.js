@@ -10,7 +10,11 @@ export const state = () => ({
   productCategories: [],
   selected: {
     categories: []
-  }
+  },
+
+  currentPage: 1,
+  pageCount: 0,
+  pageSize: 3
 });
 
 export const getters = {
@@ -39,6 +43,13 @@ export const mutations = {
   SET_BLOGS(state, blogs) {
     state.blogs = blogs;
   },
+  SET_PAGE_COUNT(state, count) {
+    state.pageCount = Math.ceil(Number(count) / state.pageSize);
+  },
+
+  SET_CURRENT_PAGE(state, page) {
+    state.currentPage = page;
+  },
 
   SET_SINGLE_BLOG(state, blog) {
     state.blog = blog;
@@ -66,14 +77,31 @@ export const mutations = {
 };
 
 export const actions = {
-  async getAllBlogs({ commit }) {
+  async getAllBlogs({ commit, state }, page = 1) {
     try {
-      let res = await axios.get(`${baseURL}/blogs/?_sort=id:DESC`);
+      const start = page === 1 ? 0 : (page - 1) * 3;
+
+      let res = await axios.get(
+        `${baseURL}/blogs/?_sort=id:DESC&_limit=${state.pageSize}&_start=${start}`
+      );
+      let blogCount = await axios.get(`${baseURL}/blogs/count`);
       commit("SET_BLOGS", res.data);
+      commit("SET_PAGE_COUNT", blogCount.data);
     } catch (error) {
       console.log(error);
     }
   },
+
+  // async getBlogPaginationPage({ commit, state }, page = 1) {
+  //   try {
+  //     let res = await axios.get(
+  //       `${baseURL}/blogs/?_sort=id:DESC&_limit=${state.pageSize}&_start=${page}`
+  //     );
+  //     commit("SET_BLOGS", res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
 
   async getSingleBlog({ commit }, params) {
     try {
