@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav>
-      <ul class="pagination">
+      <ul class="pagination flex flex--center m-t-20 m-b-20">
         <li
           v-if="currentPage > 1"
           class="pagination__item"
@@ -14,9 +14,10 @@
           v-for="(pagin, index) in pageCount"
           :key="index"
           @click="getPage(pagin)"
-          class="pagnation__item"
+          class="pagination__item"
+          :class="[index + 1 == currentPage ? 'active' : '']"
         >
-          <button>{{ pagin }}</button>
+          {{ pagin }}
         </li>
         <li
           v-if="currentPage != pageCount"
@@ -48,4 +49,23 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.pagination {
+  &__item {
+    padding: 1rem;
+    margin: 0 0.7rem;
+    background-color: $color-primary;
+    border: 1px solid $color-primary;
+    border-radius: $radius-small;
+    cursor: pointer;
+    color: $color-white;
+
+    &:hover,
+    &.active {
+      background-color: transparent;
+      border: 1px solid $color-text;
+      color: $color-text;
+    }
+  }
+}
+</style>
