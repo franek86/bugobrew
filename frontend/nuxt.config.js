@@ -29,7 +29,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "@/plugins/filter.js" }],
+  plugins: [{ src: "@/plugins/filter.js" }, { src: "~/plugins/pagination.js" }],
   /*
    ** Nuxt.js dev-modules
    */

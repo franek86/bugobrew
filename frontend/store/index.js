@@ -8,6 +8,7 @@ export const state = () => ({
   products: [],
   product: {},
   productCategories: [],
+  isLoading: false,
   selected: {
     categories: []
   },
@@ -73,13 +74,18 @@ export const mutations = {
 
   TOGGLE_NAV(state) {
     state.isNavOpen = !state.isNavOpen;
+  },
+
+  IS_LOADER(state, payload) {
+    state.isLoading = payload;
   }
 };
 
 export const actions = {
-  async getAllBlogs({ commit, state }, page = 1) {
+  async getAllBlogs({ commit, state }) {
     try {
-      const start = page === 1 ? 0 : (page - 1) * 3;
+      commit("IS_LOADER", true);
+      const start = state.currentPage === 0 ? 0 : (state.currentPage - 1) * 3;
 
       let res = await axios.get(
         `${baseURL}/blogs/?_sort=id:DESC&_limit=${state.pageSize}&_start=${start}`
@@ -87,6 +93,7 @@ export const actions = {
       let blogCount = await axios.get(`${baseURL}/blogs/count`);
       commit("SET_BLOGS", res.data);
       commit("SET_PAGE_COUNT", blogCount.data);
+      commit("IS_LOADER", false);
     } catch (error) {
       console.log(error);
     }

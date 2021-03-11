@@ -19,7 +19,7 @@
         <h1 class="f2 article__title m-b-20">{{ blog.Title }}</h1>
         <p class="article__author">{{ blog.Author }}</p>
 
-        <div class="article__content">
+        <div class="article__content white--space">
           {{ blog.Content }}
         </div>
       </div>
@@ -73,7 +73,6 @@ export default {
   }
   &__content {
     line-height: 1.5;
-    white-space: pre-wrap;
   }
   &__date {
     color: $color-grey;
