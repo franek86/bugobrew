@@ -20,10 +20,6 @@ export default {
   },
 
   computed: {
-    /*posts(){
-      return this.$store.state.posts
-    }*/
-
     ...mapState(["blogs"])
   },
 

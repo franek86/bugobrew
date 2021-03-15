@@ -40,7 +40,7 @@
         v-model="currentPage"
         :per-page="3"
         :records="pageCount"
-        @paginate="myCallback"
+        @paginate="getPage"
       />
     </div>
   </div>
@@ -78,7 +78,7 @@ export default {
   },
 
   methods: {
-    myCallback() {
+    getPage() {
       this.$store.dispatch("getAllBlogs");
     }
   }

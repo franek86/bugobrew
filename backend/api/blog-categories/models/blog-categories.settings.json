@@ -10,8 +10,8 @@
   },
   "attributes": {
     "article": {
-      "model": "blog",
-      "via": "blog_categories"
+      "via": "blog_categories",
+      "model": "blog"
     },
     "Category": {
       "type": "string"

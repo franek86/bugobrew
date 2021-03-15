@@ -22,6 +22,25 @@
   }
 }
 
+.btn--qty {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 5px;
+  border: 1px solid $color-black;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: $color-secondary;
+    border: 1px solid $color-secondary;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
 .cart--link {
   position: absolute;
   top: 0;
@@ -99,6 +118,9 @@
   position: relative;
   padding-left: $padding-20;
   margin-bottom: $margin-16;
+  font-size: 1.4rem;
+  line-height: 16px;
+  font-weight: 700;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -119,12 +141,6 @@
         display: block;
       }
     }
-  }
-
-  &__label {
-    font-size: 1.4rem;
-    line-height: 16px;
-    font-weight: 700;
   }
 
   &__custom {

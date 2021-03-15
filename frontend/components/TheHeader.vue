@@ -31,11 +31,16 @@
       </div>
 
       <div class="header__cart">
-        <img
-          class="header--icon"
-          src="~/assets/img/cart-min.svg"
-          alt="Mini cart svg icon"
-        />
+        <nuxt-link to="/cart">
+          <span class="header__cart_qty flex flex--center align--center">{{
+            totalQty
+          }}</span>
+          <img
+            class="header--icon"
+            src="~/assets/img/cart-min.svg"
+            alt="Mini cart svg icon"
+          />
+        </nuxt-link>
       </div>
     </div>
 
@@ -67,7 +72,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isAuthenticated", "loggedInUser", "isAdmin"])
+    ...mapGetters(["isAuthenticated", "loggedInUser", "isAdmin", "getCart"]),
+    totalQty() {
+      return this.getCart.reduce((a, b) => a + b.qty, 0);
+    }
   },
 
   methods: {
@@ -91,7 +99,22 @@ export default {
   }
 
   &__cart {
+    width: 40px;
+    position: relative;
     cursor: pointer;
+
+    &_qty {
+      position: absolute;
+      top: -1.5rem;
+      right: 0;
+      color: $color-primary;
+      background-color: $color-white;
+      height: 2.2rem;
+      width: 2.2rem;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      font-weight: 300;
+    }
   }
 
   &--icon {

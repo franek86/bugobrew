@@ -12,14 +12,25 @@
               <h2 class="f4">{{ product.Regular_price }} &euro;</h2>
             </div>
 
-            <div class="product__description white--space">
+            <div class="product__description white--space m-b-20">
               {{ product.Description }}
             </div>
 
-            <div class="product__qty m-b-20"></div>
+            <!-- <div class="product__qty flex m-b-20">
+              <p class="m-r-10">Quantity</p>
+              <button class="btn--qty">
+                -
+              </button>
+              <div class="product__qty_value">0</div>
+              <button class="btn--qty">
+                +
+              </button>
+            </div> -->
 
-            <div class="product__action ">
-              <button class="btn--primary">Add to cart</button>
+            <div class="product__action" @click="addProductToCart(product)">
+              <button class="btn--primary">
+                Add to cart
+              </button>
             </div>
           </div>
           <div class="product">
@@ -51,7 +62,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchSingleProduct"])
+    ...mapActions(["fetchSingleProduct", "addProductToCart"])
   }
 };
 </script>
@@ -62,8 +73,16 @@ export default {
     padding: $padding-16 0;
     border-top: 1px solid $color-grey;
     border-bottom: 1px solid $color-grey;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     line-height: 1.5;
+  }
+
+  &__qty {
+    align-items: center;
+    font-weight: 700;
+    &_value {
+      padding: $padding-10;
+    }
   }
 
   &__img {

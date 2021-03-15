@@ -4,14 +4,23 @@ const baseURL = "http://localhost:1337";
 export const state = () => ({
   blogs: [],
   blog: {},
+
   isNavOpen: false,
+
   products: [],
   product: {},
+
+  cart: [],
+  total: 0,
+  qty: 0,
+
   productCategories: [],
-  isLoading: false,
+
   selected: {
     categories: []
   },
+
+  isLoading: false,
 
   currentPage: 1,
   pageCount: 0,
@@ -37,6 +46,14 @@ export const getters = {
 
   getLatestBlogs(state) {
     return state.blogs.slice(0, 2);
+  },
+
+  getAllProducts(state) {
+    return state.products;
+  },
+
+  getCart(state) {
+    return state.cart;
   }
 };
 
@@ -78,6 +95,36 @@ export const mutations = {
 
   IS_LOADER(state, payload) {
     state.isLoading = payload;
+  },
+
+  ADD_PRODUCT_TO_CART(state, product) {
+    const addedProduct = state.cart.find(item => item.id === product.id);
+
+    if (addedProduct) {
+      addedProduct.qty++;
+    } else {
+      state.cart.push({ ...product, qty: 1 });
+    }
+  },
+
+  INCREASE_PRODUCT_QTY(state, id) {
+    const currentProduct = state.cart.find(prod => prod.id === id);
+
+    currentProduct.qty++;
+  },
+
+  DECREASE_PRODUCT_QTY(state, id) {
+    const currentProduct = state.cart.find(prod => prod.id === id);
+
+    if (currentProduct.qty > 1) {
+      currentProduct.qty--;
+    } else {
+      state.cart = state.cart.filter(product => product.id !== id);
+    }
+  },
+
+  REMOVE_PRODUCTS_FROM_CART(state, id) {
+    state.cart = state.cart.filter(product => product.id !== id);
   }
 };
 
@@ -98,17 +145,6 @@ export const actions = {
       console.log(error);
     }
   },
-
-  // async getBlogPaginationPage({ commit, state }, page = 1) {
-  //   try {
-  //     let res = await axios.get(
-  //       `${baseURL}/blogs/?_sort=id:DESC&_limit=${state.pageSize}&_start=${page}`
-  //     );
-  //     commit("SET_BLOGS", res.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },
 
   async getSingleBlog({ commit }, params) {
     try {
@@ -150,7 +186,22 @@ export const actions = {
     }
   },
 
-  getNavOpen(context) {
-    context.commit("TOGGLE_NAV");
+  getNavOpen({ commit }) {
+    commit("TOGGLE_NAV");
+  },
+
+  addProductToCart({ commit }, product) {
+    commit("ADD_PRODUCT_TO_CART", product);
+  },
+
+  increaseProductQty({ commit }, id) {
+    commit("INCREASE_PRODUCT_QTY", id);
+  },
+  decreaseProductQty({ commit }, id) {
+    commit("DECREASE_PRODUCT_QTY", id);
+  },
+
+  removeProductsFromCart({ commit }, id) {
+    commit("REMOVE_PRODUCTS_FROM_CART", id);
   }
 };

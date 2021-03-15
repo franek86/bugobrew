@@ -17,7 +17,7 @@
           View
         </nuxt-link>
 
-        <div class="product_cart__add">
+        <div class="btn--qty" @click="addProductToCart()">
           <img src="~/assets/img/plus-min.svg" alt="Plus svg icon" />
         </div>
       </div>
@@ -27,7 +27,12 @@
 
 <script>
 export default {
-  props: ["id", "imgUrl", "title", "price"]
+  props: ["id", "imgUrl", "title", "price"],
+  methods: {
+    addProductToCart() {
+      this.$emit("add-product-to-cart");
+    }
+  }
 };
 </script>
 
@@ -57,22 +62,7 @@ export default {
 
   &__price {
     color: $color-black;
-    // font-weight: 700;
     text-align: center;
-  }
-
-  &__add {
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 5px;
-    border: 1px solid $color-black;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-      background-color: $color-secondary;
-      border: 1px solid $color-secondary;
-    }
   }
 }
 </style>

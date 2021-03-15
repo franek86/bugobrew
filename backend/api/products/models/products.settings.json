@@ -44,8 +44,8 @@
       "type": "decimal"
     },
     "product_categories": {
-      "via": "products",
-      "collection": "product-categories"
+      "collection": "product-categories",
+      "via": "products"
     }
   }
 }

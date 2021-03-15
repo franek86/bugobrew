@@ -42,8 +42,8 @@
       "type": "string"
     },
     "blog_categories": {
-      "via": "article",
-      "collection": "blog-categories"
+      "collection": "blog-categories",
+      "via": "article"
     }
   }
 }

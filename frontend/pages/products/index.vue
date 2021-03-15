@@ -1,15 +1,15 @@
 <template>
   <div>
     <TheHero text="Products" />
-
     <div class="container grid columns-1 columns-m-1-2 m-t-60 m-b-60">
       <base-sidebar title="Filter by">
         <template default>
-          <div
+          <label
             class="form_check"
             v-for="(category, index) in productCategories"
             :key="index"
           >
+            {{ category.Category }}
             <input
               class="form_check__input"
               type="checkbox"
@@ -17,19 +17,13 @@
               :id="'category-' + index"
               v-model="selected"
             />
-            <label
-              class="form_check__label"
-              style="color:black;"
-              :for="'category-' + index"
-            >
-              {{ category.Category }}
-            </label>
-            <div class="form_check__custom"></div>
-          </div>
+
+            <span class="form_check__custom"></span>
+          </label>
         </template>
       </base-sidebar>
 
-      <ProductList :products="products" />
+      <ProductList :products="getAllProducts" />
     </div>
   </div>
 </template>
@@ -38,14 +32,16 @@
 import BaseSidebar from "@/components/UI/BaseSidebar";
 import TheHero from "@/components/UI/TheHero";
 import ProductList from "@/components/product/ProductList";
+import Cart from "@/components/cart/Cart";
 
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
-  components: { BaseSidebar, TheHero, ProductList },
+  components: { BaseSidebar, TheHero, ProductList, Cart },
 
   computed: {
-    ...mapState(["productCategories", "products"]),
+    ...mapState(["productCategories"]),
+    ...mapGetters(["getAllProducts"]),
     selected: {
       get() {
         return this.$store.state.selected.categories;
