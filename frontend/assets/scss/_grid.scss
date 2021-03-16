@@ -34,6 +34,10 @@
   align-items: center;
 }
 
+.flex--end {
+  align-items: flex-end;
+}
+
 .flex--between {
   justify-content: space-between;
 }
@@ -41,6 +45,10 @@
 .grid {
   display: grid;
   gap: 2rem;
+}
+
+.columns-2-1 {
+  grid-template-columns: 2fr 1fr;
 }
 
 .columns-6 {

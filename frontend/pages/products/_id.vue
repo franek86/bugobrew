@@ -28,17 +28,13 @@
             </div> -->
 
             <div class="product__action" @click="addProductToCart(product)">
-              <button class="btn--primary">
-                Add to cart
-              </button>
+              <button class="btn--primary">Add to cart</button>
             </div>
           </div>
           <div class="product">
             <div v-if="product.Single_image" class="product__img">
               <img
-                :src="
-                  `http://localhost:1337${product.Single_image.formats.large.url}`
-                "
+                :src="`http://localhost:1337${product.Single_image.formats.large.url}`"
                 alt=""
               />
             </div>
@@ -54,7 +50,7 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   computed: {
-    ...mapState(["product"])
+    ...mapState(["product"]),
   },
 
   mounted() {
@@ -62,8 +58,8 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchSingleProduct", "addProductToCart"])
-  }
+    ...mapActions(["fetchSingleProduct", "addProductToCart"]),
+  },
 };
 </script>
 

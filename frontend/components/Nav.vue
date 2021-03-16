@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div
-      class="backdrop"
-      :class="{ backdrop_active: isSlideMenuOpen }"
-      @click="closeSlideMenu()"
-    ></div>
+    <BaseBackdrop
+      :backdropActive="isSlideMenuOpen"
+      @close-backdrop="closeSlideMenu"
+    />
+
     <div
       class="slide__menu"
       @click="closeSlideMenu()"
@@ -20,12 +20,12 @@
 </template>
 
 <script>
+import BaseBackdrop from "../components/UI/BaseBackdrop";
+
 export default {
-  /*data(){
-        return{
-            isSlideMenuOpen: false
-        }
-    },*/
+  components: {
+    BaseBackdrop
+  },
 
   computed: {
     isSlideMenuOpen() {
@@ -35,7 +35,6 @@ export default {
 
   methods: {
     closeSlideMenu() {
-      //this.isSlideMenuOpen = !this.isSlideMenuOpen
       this.$store.dispatch("getNavOpen");
     }
   }

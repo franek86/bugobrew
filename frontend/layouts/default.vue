@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+   
     <TheHeader />
     <div class="main__container">
       <nuxt />
@@ -12,10 +13,12 @@
 import TheHeader from "@/components/TheHeader";
 import TheFooter from "@/components/TheFooter";
 
+
 export default {
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
+    
   }
 };
 </script>

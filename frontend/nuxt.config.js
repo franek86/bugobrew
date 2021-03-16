@@ -13,10 +13,10 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
-      }
+        content: process.env.npm_package_description || "",
+      },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   /*
    ** Customize the progress-bar color
@@ -29,7 +29,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "@/plugins/filter.js" }, { src: "~/plugins/pagination.js" }],
+  plugins: [
+    { src: "@/plugins/filter.js" },
+    { src: "~/plugins/pagination.js" },
+    { src: "~/plugins/localStorage.js", ssr: false },
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -43,7 +47,7 @@ export default {
    */
   axios: {
     proxy: true,
-    baseURL: URL
+    baseURL: URL,
   },
 
   auth: {
@@ -53,30 +57,30 @@ export default {
           login: {
             url: `${URL}/auth/local`,
             method: "post",
-            propertyName: "jwt"
+            propertyName: "jwt",
           },
           logout: false,
           user: {
             url: `${URL}/users/me`,
             method: "get",
-            propertyName: false
-          }
+            propertyName: false,
+          },
         },
         tokenRequired: true,
-        tokenType: "bearer"
+        tokenType: "bearer",
         // globalToken: true,
         // autoFetchUser: true
       },
-      tokenName: "jwt"
+      tokenName: "jwt",
     },
     redirect: {
       login: "/auth/login",
-      home: "/Admin"
-    }
+      home: "/Admin",
+    },
   },
 
   styleResources: {
-    scss: ["assets/scss/_variables.scss"]
+    scss: ["assets/scss/_variables.scss"],
   },
   /*
    ** Build configuration
@@ -85,6 +89,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
-  }
+    extend(config, ctx) {},
+  },
 };

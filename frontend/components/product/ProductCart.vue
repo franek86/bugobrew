@@ -7,7 +7,9 @@
         </div>
 
         <h1 class="product_cart__title m-b-10">{{ title }}</h1>
-        <div class="product_cart__price f5 m-b-20">{{ price }} &euro;</div>
+        <div class="product_cart__price f5 m-b-20">
+          {{ price.toFixed(2) }} &euro;
+        </div>
       </nuxt-link>
       <div class="flex flex--between">
         <nuxt-link
@@ -18,7 +20,7 @@
         </nuxt-link>
 
         <div class="btn--qty" @click="addProductToCart()">
-          <img src="~/assets/img/plus-min.svg" alt="Plus svg icon" />
+          <img src="~/assets/img/plus.svg" alt="Plus svg icon" />
         </div>
       </div>
     </article>
@@ -31,8 +33,8 @@ export default {
   methods: {
     addProductToCart() {
       this.$emit("add-product-to-cart");
-    }
-  }
+    },
+  },
 };
 </script>
 

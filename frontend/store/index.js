@@ -6,6 +6,7 @@ export const state = () => ({
   blog: {},
 
   isNavOpen: false,
+  isMiniCartOpen: false,
 
   products: [],
   product: {},
@@ -52,8 +53,20 @@ export const getters = {
     return state.products;
   },
 
+  getMiniCartOpen(state) {
+    return state.isMiniCartOpen;
+  },
+
   getCart(state) {
     return state.cart;
+  },
+
+  getCartTotalPrice(state) {
+    let total = 0;
+    state.cart.map(item => {
+      total += item.Regular_price * item.qty;
+    });
+    return total;
   }
 };
 
@@ -93,6 +106,14 @@ export const mutations = {
     state.isNavOpen = !state.isNavOpen;
   },
 
+  TOGGLE_MINI_CART(state) {
+    state.isMiniCartOpen = !state.isMiniCartOpen;
+  },
+
+  CLOSE_MINI_CART(state) {
+    state.isMiniCartOpen = false;
+  },
+
   IS_LOADER(state, payload) {
     state.isLoading = payload;
   },
@@ -123,8 +144,10 @@ export const mutations = {
     }
   },
 
-  REMOVE_PRODUCTS_FROM_CART(state, id) {
-    state.cart = state.cart.filter(product => product.id !== id);
+  REMOVE_PRODUCTS_FROM_CART(state, product) {
+    state.total -= product.qty;
+    let indexOf = state.cart.indexOf(product);
+    state.cart.splice(indexOf, 1);
   }
 };
 
@@ -167,7 +190,7 @@ export const actions = {
 
   async fetchAllProducts({ commit, state }) {
     try {
-      let res = await axios.get(`${baseURL}/products`, {
+      let res = await axios.get(`${baseURL}/products?_sort=id:DESC`, {
         params: { product_categories: state.selected.categories }
       });
 
@@ -190,6 +213,14 @@ export const actions = {
     commit("TOGGLE_NAV");
   },
 
+  toggleMiniCart({ commit }, payload) {
+    commit("TOGGLE_MINI_CART", payload);
+  },
+
+  closeMiniCart({ commit }) {
+    commit("CLOSE_MINI_CART");
+  },
+
   addProductToCart({ commit }, product) {
     commit("ADD_PRODUCT_TO_CART", product);
   },
@@ -201,7 +232,7 @@ export const actions = {
     commit("DECREASE_PRODUCT_QTY", id);
   },
 
-  removeProductsFromCart({ commit }, id) {
-    commit("REMOVE_PRODUCTS_FROM_CART", id);
+  removeProductsFromCart({ commit }, product) {
+    commit("REMOVE_PRODUCTS_FROM_CART", product);
   }
 };
