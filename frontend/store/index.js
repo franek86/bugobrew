@@ -33,13 +33,13 @@ export const getters = {
     return state.auth.loggedIn;
   },
 
-  loggedInUser(state) {
+  isUser(state) {
     return state.auth.user;
   },
 
-  isAdmin(state) {
-    return state.auth.user.role.type === "admin";
-  },
+  // isAdmin(state) {
+  //   return state.auth.user.role.type === "admin";
+  // },
 
   getAllBlogs(state) {
     return state.blogs;

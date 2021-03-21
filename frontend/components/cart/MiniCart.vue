@@ -74,7 +74,7 @@
             <span class="f4">{{ getCartTotalPrice.toFixed(2) }}</span>
           </div>
 
-          <div class="btn--primary">Checkout</div>
+          <div class="btn--primary" @click="goToCheckout()">Checkout</div>
         </div>
       </div>
     </div>
@@ -87,7 +87,13 @@ import BaseBackdrop from "../UI/BaseBackdrop.vue";
 export default {
   components: { BaseBackdrop },
   computed: {
-    ...mapGetters(["getMiniCartOpen", "getCart", "getCartTotalPrice"])
+    ...mapGetters([
+      "getMiniCartOpen",
+      "getCart",
+      "getCartTotalPrice",
+      "isAuthenticated",
+      "isUser"
+    ])
   },
 
   methods: {
@@ -105,6 +111,14 @@ export default {
 
     itemTotalPrice(price, qty) {
       return (price * qty).toFixed(2);
+    },
+
+    goToCheckout() {
+      const isConnected = this.isUser;
+
+      this.$router.push("/checkout");
+
+      this.$store.dispatch("closeMiniCart");
     }
   }
 };

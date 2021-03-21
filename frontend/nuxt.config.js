@@ -45,6 +45,7 @@ export default {
   /*
    ** Axios modul congiguration
    */
+
   axios: {
     proxy: true,
     baseURL: URL,
@@ -75,7 +76,7 @@ export default {
     },
     redirect: {
       login: "/auth/login",
-      home: "/Admin",
+      home: false,
     },
   },
 

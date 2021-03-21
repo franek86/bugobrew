@@ -8,8 +8,8 @@
       <div class="header__login">
         <div class="login__nav">
           <div v-if="isAuthenticated">
-            <div class="login__nav_user">{{ loggedInUser.username }}</div>
-            <div v-if="isAdmin">{{ isAdmin }}</div>
+            <div class="login__nav_user">{{ isUser.username }}</div>
+
             <div class="logout" @click.prevent="logout">Logout</div>
           </div>
 
@@ -69,7 +69,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isAuthenticated", "loggedInUser", "isAdmin", "getCart"]),
+    ...mapGetters(["isAuthenticated", "isUser", "getCart"]),
     totalQty() {
       return this.getCart.reduce((a, b) => a + b.qty, 0);
     }
@@ -78,6 +78,7 @@ export default {
   methods: {
     async logout() {
       await this.$auth.logout();
+      this.$router.push("/");
     },
 
     showMiniCart() {
