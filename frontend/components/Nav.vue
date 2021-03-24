@@ -70,15 +70,23 @@ export default {
 }
 
 .slide__menu {
-  position: fixed;
+  position: absolute;
   top: 0;
-  right: -55vw;
+
+  right: -100%;
   background: $color-secondary;
   min-height: 100vh;
-  width: 55vw;
+
+  width: 100%;
   transition: right 1s ease-in-out;
-  clip-path: polygon(11% 0, 100% 0%, 100% 100%, 0 100%);
+
   height: 100%;
+
+  @media (min-width: $breakpoint-tablet) {
+    clip-path: polygon(11% 0, 100% 0%, 100% 100%, 0 100%);
+    width: 55vw;
+    right: -55vw;
+  }
 
   &.slide__menu_active {
     right: 0;

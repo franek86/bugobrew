@@ -10,7 +10,7 @@ export default {};
 
 <style lang="scss">
 .logo {
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: bold;
   padding: $padding-8;
   color: $color-white;

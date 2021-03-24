@@ -6,7 +6,7 @@
     />
     <div class="mini_cart" :class="getMiniCartOpen ? 'is--cart' : ''">
       <div
-        v-if="getCart.length == 0"
+        v-if="!getCart.length"
         class="mini_cart__empty flex flex--center flex--col align--center"
       >
         <h2 class="m-b-30">Your cart is empty!</h2>
@@ -18,11 +18,11 @@
           Shop now
         </nuxt-link>
       </div>
-      <div style="height:100%;" else>
+      <div v-else style="height:100%;">
         <div class="mini_cart__list m-b-30">
           <div v-for="item in getCart" :key="item.id">
             <div class="mini_cart__box grid m-b-10">
-              <div class="mini_cart__img" v-if="item.Single_image">
+              <div class="product--img" v-if="item.Single_image">
                 <img
                   :src="
                     `http://localhost:1337${item.Single_image.formats.large.url}`
@@ -32,7 +32,7 @@
               </div>
               <div class="mini_cart__content grid columns-2-1">
                 <div class="flex flex--col flex--between">
-                  <h1 class="f6">{{ item.Title }}</h1>
+                  <h1 class="f5">{{ item.Title }}</h1>
                   <div class="mini_cart__qty">
                     <span class="m-r-10">QTY:</span>
                     <button
@@ -114,8 +114,6 @@ export default {
     },
 
     goToCheckout() {
-      const isConnected = this.isUser;
-
       this.$router.push("/checkout");
 
       this.$store.dispatch("closeMiniCart");
@@ -126,15 +124,21 @@ export default {
 
 <style lang="scss" scoped>
 .mini_cart {
-  height: calc(100% - 100px);
+  height: calc(100% - 80px);
   width: 50%;
   background-color: $color-secondary;
   position: fixed;
   right: 0;
+  left: 0;
+  bottom: 0;
   padding: $padding-20;
 
   transition: transform 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
   transform: translate3d(calc(100% + 1px), 0, 0);
+
+  @media (min-width: $breakpoint-tablet) {
+    left: unset;
+  }
 
   &.is--cart {
     transform: translateZ(0);
@@ -145,8 +149,11 @@ export default {
   }
 
   &__list {
-    height: calc(100% - 150px);
     overflow-x: scroll;
+
+    @media (min-width: $breakpoint-tablet) {
+      height: calc(100% - 150px);
+    }
   }
 
   &__box {
@@ -154,21 +161,6 @@ export default {
     background-color: $color-white;
     padding: $padding-10;
     border-radius: $radius-small;
-  }
-  &__img {
-    padding-bottom: 90%;
-    position: relative;
-
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 100%;
-      width: 100%;
-      object-fit: contain;
-    }
   }
 }
 </style>

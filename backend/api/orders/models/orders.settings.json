@@ -28,6 +28,9 @@
       "plugin": "users-permissions",
       "model": "user",
       "via": "orders"
+    },
+    "orderNumber": {
+      "type": "string"
     }
   }
 }

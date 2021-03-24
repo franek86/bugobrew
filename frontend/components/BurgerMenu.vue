@@ -34,8 +34,8 @@ export default {
   position: absolute;
   top: 0;
   right: 20px;
-  height: 75px;
-  width: 75px;
+  height: 50px;
+  width: 50px;
   background-color: $color-white;
   z-index: 100;
   transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -51,7 +51,7 @@ export default {
       top: 50%;
       left: 5px;
       right: 5px;
-      height: 10px;
+      height: 5px;
       width: auto;
       margin-top: -5px;
       background: $color-primary;

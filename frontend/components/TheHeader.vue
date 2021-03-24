@@ -6,11 +6,22 @@
       </div>
 
       <div class="header__login">
-        <div class="login__nav">
+        <div>
           <div v-if="isAuthenticated">
-            <div class="login__nav_user">{{ isUser.username }}</div>
-
-            <div class="logout" @click.prevent="logout">Logout</div>
+            <div class="header--username text--white" @click="toggleUserNav()">
+              Welcome, {{ isUser.username }}
+            </div>
+            <div class="header__login_user" :class="{ active: isUserNavHover }">
+              <nuxt-link
+                to="/profile"
+                class="user--nav"
+                @click.native="closeUserNav()"
+                >Profile</nuxt-link
+              >
+              <div class="logout user--nav" @click.prevent="logout">
+                Logout
+              </div>
+            </div>
           </div>
 
           <div v-if="!isAuthenticated">
@@ -68,6 +79,12 @@ export default {
     MiniCart
   },
 
+  data() {
+    return {
+      isUserNavHover: false
+    };
+  },
+
   computed: {
     ...mapGetters(["isAuthenticated", "isUser", "getCart"]),
     totalQty() {
@@ -78,11 +95,19 @@ export default {
   methods: {
     async logout() {
       await this.$auth.logout();
+      this.isUserNavHover = false;
       this.$router.push("/");
     },
 
     showMiniCart() {
       this.$store.dispatch("toggleMiniCart");
+    },
+
+    toggleUserNav() {
+      this.isUserNavHover = !this.isUserNavHover;
+    },
+    closeUserNav() {
+      this.isUserNavHover = false;
     }
   }
 };
@@ -98,6 +123,43 @@ export default {
   &__login {
     display: flex;
     justify-content: flex-end;
+
+    &_user {
+      background-color: $color-primary;
+      position: absolute;
+      bottom: 0;
+      width: 13rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: $color-white;
+      box-shadow: $box-shadow;
+      border-top: 3px solid $color-black;
+      transform: translateY(-100%);
+      opacity: 0;
+
+      &.active {
+        transform: translateY(100%);
+        opacity: 1;
+      }
+
+      .user--nav {
+        padding: $padding-16 0;
+        color: $color-white;
+        display: block;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid $color-secondary;
+        transition: all 0.25s ease-in-out;
+
+        &:hover {
+          color: $color-primary;
+          background-color: $color-white;
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   &__cart {
@@ -116,6 +178,16 @@ export default {
       border-radius: 50%;
       font-size: 1.3rem;
       font-weight: 300;
+    }
+  }
+
+  &--username {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      border-bottom: 1px solid $color-white;
+      padding-bottom: 5px;
+      transition: all 0.3s ease-in-out;
     }
   }
 

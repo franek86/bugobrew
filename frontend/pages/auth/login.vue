@@ -2,10 +2,6 @@
   <div class="h--vh">
     <div class="container">
       <div class="w-100 w-m-50 margin-auto">
-        <h1 v-if="this.$route.query.redirect">
-          {{ this.$route.query.redirect }}
-        </h1>
-
         <div class="login__form">
           <div class="error--message" v-if="error">
             <p>{{ error }}</p>
@@ -73,8 +69,8 @@ export default {
             password: this.password,
           },
         });
-        let redirect_url = this.$route.query.redirect || "/";
-        debugger;
+        let redirect_url = this.$route.query.redirect || "/profile";
+
         this.$router.push(redirect_url);
       } catch (error) {
         this.error = error.response.data.message[0].messages[0].message;
@@ -94,30 +90,6 @@ export default {
 .login__form {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 90vw;
-  margin: 0 auto $margin-32 auto;
-
-  @media (min-width: $breakpoint-tablet) {
-    max-width: 70vw;
-  }
-
-  @media (min-width: $breakpoint-xl-desktop) {
-    max-width: 40vw;
-  }
-
-  &__input {
-    padding: $padding-16;
-    display: block;
-    width: 100%;
-    margin-bottom: $margin-16;
-  }
 }
 
 .register__link {

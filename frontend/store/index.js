@@ -37,9 +37,9 @@ export const getters = {
     return state.auth.user;
   },
 
-  // isAdmin(state) {
-  //   return state.auth.user.role.type === "admin";
-  // },
+  getUserId(state) {
+    return state.auth.user.id;
+  },
 
   getAllBlogs(state) {
     return state.blogs;

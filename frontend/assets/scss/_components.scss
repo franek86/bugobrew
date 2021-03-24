@@ -30,6 +30,7 @@
   background-color: transparent;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  border-radius: 50%;
 
   &:hover,
   &:focus {
@@ -110,55 +111,5 @@
     border-radius: 4px;
     transform: rotate(-1deg);
     z-index: -1;
-  }
-}
-
-.form_check {
-  display: block;
-  position: relative;
-  padding-left: $padding-20;
-  margin-bottom: $margin-16;
-  font-size: 1.4rem;
-  line-height: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  &__input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-
-    &:checked ~ .form_check__custom {
-      background-color: $color-white;
-      border: 1px solid $color-white;
-      &:after {
-        display: block;
-      }
-    }
-  }
-
-  &__custom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 16px;
-    width: 16px;
-    border: 1px solid $color-black;
-
-    &:after {
-      content: "";
-      display: none;
-      width: 100%;
-      height: 100%;
-      background-repeat: no-repeat;
-      background-image: url("../img/check.svg");
-      background-size: contain;
-    }
   }
 }

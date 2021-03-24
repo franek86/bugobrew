@@ -2,7 +2,7 @@
   <div>
     <article class="product_cart m-b-30 has--transition img--zoom">
       <nuxt-link :to="{ name: 'products-id', params: { id: id } }">
-        <div class="product_cart__img m-b-20">
+        <div class="product--img m-b-20">
           <img :src="`http://localhost:1337${imgUrl}`" alt="" />
         </div>
 
@@ -44,16 +44,6 @@ export default {
   border-radius: $radius-midium;
   cursor: pointer;
   padding: $padding-20;
-
-  &__img {
-    height: 320px;
-
-    img {
-      object-fit: contain;
-      object-position: center;
-      height: 100%;
-    }
-  }
 
   &__title {
     font-size: 1.6rem;
