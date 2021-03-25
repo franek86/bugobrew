@@ -22,6 +22,7 @@
     "vue-awesome-swiper": "^4.1.1",
     "vue-moment": "^4.1.0",
     "vue-pagination-2": "^3.0.8",
+    "vue-toasted": "^1.1.28",
     "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {

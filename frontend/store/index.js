@@ -148,6 +148,10 @@ export const mutations = {
     state.total -= product.qty;
     let indexOf = state.cart.indexOf(product);
     state.cart.splice(indexOf, 1);
+  },
+
+  CLEAR_CART(state) {
+    state.cart = [];
   }
 };
 

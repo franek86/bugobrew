@@ -30,9 +30,19 @@
 <script>
 export default {
   props: ["id", "imgUrl", "title", "price"],
+  data() {
+    return {
+      productName: this.title,
+    };
+  },
   methods: {
     addProductToCart() {
       this.$emit("add-product-to-cart");
+      this.$toasted.show(`${this.title} added in cart`, {
+        theme: "bubble",
+        duration: 2000,
+        className: "custom--toasted",
+      });
     },
   },
 };

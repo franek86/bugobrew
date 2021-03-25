@@ -2,9 +2,15 @@
   <div>
     <div class="container m-b-60 m-t-60">
       <div class="grid columns-m-2-1">
-        <div class="p-r-20">
+        <div class="profile__right">
           <h1>My orders</h1>
-          <div v-if="!userOrder.length">
+          <div class="flex flex--col width-70" v-if="!userOrder.length">
+            <p class="f5 m-t-30 m-b-30">No orders for now.</p>
+            <nuxt-link class="btn--primary" to="/products">
+              Start shopping
+            </nuxt-link>
+          </div>
+          <div else>
             <div v-for="order in userOrder" :key="order.id">
               <div class="orders m-t-20 m-b-20">
                 <div class="orders--info">
@@ -46,13 +52,43 @@
               </div>
             </div>
           </div>
-          <div else>
-            <h1>No orders for now.</h1>
-          </div>
         </div>
 
-        <div class="p-l-20">
-          <h1>My profile</h1>
+        <div class="profile__left">
+          <h1 class="m-b-30">My profile</h1>
+          <form class="form">
+            <input
+              class="form__input"
+              v-model="username"
+              type="name"
+              placeholder="Username"
+              required
+            />
+            <input
+              class="form__input"
+              v-model="email"
+              type="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              class="form__input"
+              v-model="password"
+              type="password"
+              placeholder="Password"
+              required
+            />
+            <input
+              class="form__input"
+              v-model="password"
+              type="password"
+              placeholder="Confirm password"
+              required
+            />
+            <button class="btn--primary" @click.prevent="updateProfile()">
+              Update
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -123,5 +159,14 @@ export default {
       border-radius: 7px;
     }
   }
+}
+
+.profile__right {
+  padding-right: 20%;
+}
+
+.profile__left {
+  border-left: 1px solid $color-secondary;
+  padding-left: 10%;
 }
 </style>

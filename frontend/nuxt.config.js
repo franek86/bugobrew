@@ -33,6 +33,7 @@ export default {
     { src: "@/plugins/filter.js" },
     { src: "~/plugins/pagination.js" },
     { src: "~/plugins/localStorage.js", ssr: false },
+    { src: "~/plugins/toasted.js", ssr: false },
   ],
   /*
    ** Nuxt.js dev-modules

@@ -22,7 +22,7 @@ ul.main__nav {
     transform: translateY(100%);
     position: relative;
     margin: $margin-8;
-
+    padding-left: $padding-16;
     a {
       font-size: 2rem;
       text-transform: uppercase;

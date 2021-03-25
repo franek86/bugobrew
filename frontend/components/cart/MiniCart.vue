@@ -52,10 +52,7 @@
                 </div>
 
                 <div class="flex flex--col flex--between flex--end">
-                  <button
-                    @click="removeProductsFromCart(item)"
-                    class="btn--qty"
-                  >
+                  <button @click="removeProduct(item)" class="btn--qty">
                     <img src="~/assets/img/close.svg" alt="Close svg icon" />
                   </button>
 
@@ -65,6 +62,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="link--primary m-t-20" @click="clearCart()">
+            clear cart
           </div>
         </div>
 
@@ -86,6 +86,7 @@ import { mapGetters, mapActions } from "vuex";
 import BaseBackdrop from "../UI/BaseBackdrop.vue";
 export default {
   components: { BaseBackdrop },
+
   computed: {
     ...mapGetters([
       "getMiniCartOpen",
@@ -97,16 +98,21 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-      "increaseProductQty",
-      "decreaseProductQty",
-      "removeProductsFromCart"
-    ]),
+    ...mapActions(["increaseProductQty", "decreaseProductQty"]),
     closeBackdrop() {
       this.$store.dispatch("toggleMiniCart");
     },
     closeMiniCart() {
       this.$store.dispatch("closeMiniCart");
+    },
+
+    removeProduct(item) {
+      this.$store.dispatch("removeProductsFromCart", item);
+      this.$toasted.show("You removed product from cart!", {
+        theme: "bubble",
+        duration: 2000,
+        className: "custom--toasted"
+      });
     },
 
     itemTotalPrice(price, qty) {
@@ -117,6 +123,15 @@ export default {
       this.$router.push("/checkout");
 
       this.$store.dispatch("closeMiniCart");
+    },
+
+    clearCart() {
+      this.$store.commit("CLEAR_CART");
+      this.$toasted.show("You removed all products from cart!", {
+        theme: "bubble",
+        duration: 2000,
+        className: "custom--toasted"
+      });
     }
   }
 };
@@ -124,20 +139,25 @@ export default {
 
 <style lang="scss" scoped>
 .mini_cart {
-  height: calc(100% - 80px);
-  width: 50%;
+  height: 100vh;
+  width: 100%;
   background-color: $color-secondary;
-  position: fixed;
+  position: absolute;
   right: 0;
   left: 0;
   bottom: 0;
+  top: 80px;
   padding: $padding-20;
 
   transition: transform 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
   transform: translate3d(calc(100% + 1px), 0, 0);
 
   @media (min-width: $breakpoint-tablet) {
+    height: calc(100% - 80px);
+    position: fixed;
     left: unset;
+    width: 50%;
+    top: unset;
   }
 
   &.is--cart {

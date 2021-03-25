@@ -27,7 +27,7 @@
               </button>
             </div> -->
 
-            <div class="product__action" @click="addProductToCart(product)">
+            <div class="product__action" @click="addToCart(product)">
               <button class="btn--primary">Add to cart</button>
             </div>
           </div>
@@ -58,7 +58,16 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchSingleProduct", "addProductToCart"]),
+    ...mapActions(["fetchSingleProduct"]),
+
+    addToCart(product) {
+      this.$store.dispatch("addProductToCart", product);
+      this.$toasted.show(`You added ${product.Title} to cart!`, {
+        theme: "bubble",
+        duration: 2000,
+        className: "custom--toasted",
+      });
+    },
   },
 };
 </script>
