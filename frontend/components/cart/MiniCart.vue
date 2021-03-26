@@ -6,7 +6,7 @@
     />
     <div class="mini_cart" :class="getMiniCartOpen ? 'is--cart' : ''">
       <div
-        v-if="!getCart.length"
+        v-if="!getCartLength"
         class="mini_cart__empty flex flex--center flex--col align--center"
       >
         <h2 class="m-b-30">Your cart is empty!</h2>
@@ -92,6 +92,7 @@ export default {
       "getMiniCartOpen",
       "isAuthenticated",
       "isUser",
+      "getCartLength",
       "getCart",
       "getCartTotalPrice"
     ])

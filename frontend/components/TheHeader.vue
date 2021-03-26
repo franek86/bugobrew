@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" @mouseleave="closeUserNav()">
     <div class="grid header__grid align--center">
       <div>
         <Logo />
@@ -7,11 +7,18 @@
 
       <div class="header__login">
         <div>
-          <div v-if="isAuthenticated">
-            <div class="header--username text--white" @click="toggleUserNav()">
+          <div class="relative" v-if="isAuthenticated">
+            <div
+              class="header--username text--white"
+              @mouseover="openNavUser()"
+            >
               Welcome, {{ isUser.username }}
             </div>
-            <div class="header__login_user" :class="{ active: isUserNavHover }">
+            <div
+              @mouseleave="closeUserNav()"
+              class="header__login_user"
+              :class="{ active: isUserNavHover }"
+            >
               <nuxt-link
                 to="/profile"
                 class="user--nav"
@@ -104,7 +111,7 @@ export default {
       this.$store.dispatch("toggleMiniCart");
     },
 
-    toggleUserNav() {
+    openNavUser() {
       this.isUserNavHover = !this.isUserNavHover;
     },
     closeUserNav() {
@@ -128,9 +135,11 @@ export default {
     &_user {
       background-color: $color-primary;
       position: absolute;
-      bottom: 0;
+      //bottom: 0;
+      top: 0%;
+      left: -10px;
       width: 13rem;
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -139,9 +148,11 @@ export default {
       border-top: 3px solid $color-black;
       transform: translateY(-100%);
       opacity: 0;
+      margin-top: $margin-16;
 
       &.active {
-        transform: translateY(100%);
+        display: flex;
+        transform: translateY(10%);
         opacity: 1;
       }
 
