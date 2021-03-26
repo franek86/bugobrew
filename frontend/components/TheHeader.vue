@@ -93,7 +93,8 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isAuthenticated", "isUser", "getCart"]),
+    ...mapGetters(["isAuthenticated", "isUser"]),
+    ...mapGetters("cart", { getCart: "getCart" }),
 
     totalQty() {
       return this.getCart.reduce((a, b) => a + b.qty, 0);

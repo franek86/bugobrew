@@ -20,17 +20,17 @@ export default {
   props: {
     products: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
   components: {
-    ProductCart
+    ProductCart,
   },
 
   methods: {
-    ...mapActions(["addProductToCart"])
-  }
+    ...mapActions("cart", { addProductToCart: "addProductToCart" }),
+  },
 };
 </script>
 

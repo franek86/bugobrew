@@ -88,7 +88,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getCartTotalPrice", "getCart", "getUserId"]),
+    ...mapGetters(["getUserId"]),
+    ...mapGetters("cart", {
+      getCart: "getCart",
+      getCartTotalPrice: "getCartTotalPrice",
+    }),
   },
 
   methods: {

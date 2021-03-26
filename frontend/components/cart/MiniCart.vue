@@ -88,18 +88,20 @@ export default {
   components: { BaseBackdrop },
 
   computed: {
-    ...mapGetters([
-      "getMiniCartOpen",
-      "isAuthenticated",
-      "isUser",
-      "getCartLength",
-      "getCart",
-      "getCartTotalPrice"
-    ])
+    ...mapGetters(["getMiniCartOpen", "isAuthenticated", "isUser"]),
+
+    ...mapGetters("cart", {
+      getCartLength: "getCartLength",
+      getCart: "getCart",
+      getCartTotalPrice: "getCartTotalPrice"
+    })
   },
 
   methods: {
-    ...mapActions(["increaseProductQty", "decreaseProductQty"]),
+    ...mapActions("cart", {
+      increaseProductQty: "increaseProductQty",
+      decreaseProductQty: "decreaseProductQty"
+    }),
 
     closeBackdrop() {
       this.$store.dispatch("toggleMiniCart");
@@ -109,7 +111,7 @@ export default {
     },
 
     removeProduct(item) {
-      this.$store.dispatch("removeProductsFromCart", item);
+      this.$store.dispatch("cart/removeProductsFromCart", item);
       this.$toasted.show("You removed product from cart!", {
         theme: "bubble",
         duration: 2000,
@@ -128,7 +130,7 @@ export default {
     },
 
     clearCart() {
-      this.$store.commit("CLEAR_CART");
+      this.$store.commit("cart/CLEAR_CART");
       this.$toasted.show("You removed all products from cart!", {
         theme: "bubble",
         duration: 2000,

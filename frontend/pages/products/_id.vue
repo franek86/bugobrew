@@ -61,7 +61,7 @@ export default {
     ...mapActions("product", { fetchSingleProduct: "fetchSingleProduct" }),
 
     addToCart(product) {
-      this.$store.dispatch("addProductToCart", product);
+      this.$store.dispatch("cart/addProductToCart", product);
       this.$toasted.show(`You added ${product.Title} to cart!`, {
         theme: "bubble",
         duration: 2000,
