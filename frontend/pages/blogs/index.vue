@@ -16,11 +16,11 @@ import { mapState, mapActions } from "vuex";
 export default {
   components: {
     BlogList,
-    TheHero
+    TheHero,
   },
 
   computed: {
-    ...mapState(["blogs"])
+    ...mapState({ blogs: (state) => state.blog.blogs }),
   },
 
   mounted() {
@@ -28,8 +28,8 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getAllBlogs"])
-  }
+    ...mapActions("blog", { getAllBlogs: "getAllBlogs" }),
+  },
 };
 </script>
 

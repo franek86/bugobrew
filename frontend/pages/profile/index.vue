@@ -59,28 +59,24 @@
           <form class="form">
             <input
               class="form__input"
-              v-model="username"
               type="name"
               placeholder="Username"
               required
             />
             <input
               class="form__input"
-              v-model="email"
               type="email"
               placeholder="Email"
               required
             />
             <input
               class="form__input"
-              v-model="password"
               type="password"
               placeholder="Password"
               required
             />
             <input
               class="form__input"
-              v-model="password"
               type="password"
               placeholder="Confirm password"
               required

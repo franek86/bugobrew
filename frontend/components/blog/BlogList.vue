@@ -29,9 +29,7 @@
               <p>{{ blog.Excerpt }}</p>
             </div>
 
-            <div class="link--primary m-b-15">
-              Read
-            </div>
+            <div class="link--primary m-b-15">Read</div>
           </div>
         </article>
       </div>
@@ -55,13 +53,13 @@ export default {
   props: {
     blogs: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
       page: 1,
-      pageCount: 5
+      pageCount: 5,
     };
   },
 
@@ -73,15 +71,15 @@ export default {
       },
       set(value) {
         this.$store.commit("SET_CURRENT_PAGE", value);
-      }
-    }
+      },
+    },
   },
 
   methods: {
     getPage() {
-      this.$store.dispatch("getAllBlogs");
-    }
-  }
+      this.$store.dispatch("blog/getAllBlogs");
+    },
+  },
 };
 </script>
 

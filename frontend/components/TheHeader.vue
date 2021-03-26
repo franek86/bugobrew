@@ -87,6 +87,7 @@ export default {
 
   computed: {
     ...mapGetters(["isAuthenticated", "isUser", "getCart"]),
+
     totalQty() {
       return this.getCart.reduce((a, b) => a + b.qty, 0);
     }

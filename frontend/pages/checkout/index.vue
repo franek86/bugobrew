@@ -109,7 +109,7 @@ export default {
         };
 
         let token = localStorage.getItem("auth._token.local");
-        debugger;
+
         await axios.post("http://localhost:1337/orders", orders, {
           headers: {
             Authorization: token,

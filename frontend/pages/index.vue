@@ -45,9 +45,7 @@
         </article>
       </div>
       <div class="flex flex--center">
-        <nuxt-link to="/blogs" class="btn--primary">
-          All posts
-        </nuxt-link>
+        <nuxt-link to="/blogs" class="btn--primary"> All posts </nuxt-link>
       </div>
     </section>
 
@@ -61,14 +59,11 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   components: {
-    AppSwiper
+    AppSwiper,
   },
 
   computed: {
-    /*latestPosts(){
-            return this.$store.getters.getAllPosts.slice(0,2);
-        }*/
-    ...mapGetters(["getLatestBlogs"])
+    ...mapGetters("blog", { getLatestBlogs: "getLatestBlogs" }),
   },
 
   mounted() {
@@ -76,8 +71,8 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getAllBlogs"])
-  }
+    ...mapActions("blog", { getAllBlogs: "getAllBlogs" }),
+  },
 };
 </script>
 

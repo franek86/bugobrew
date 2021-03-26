@@ -2,9 +2,6 @@ import axios from "axios";
 const baseURL = "http://localhost:1337";
 
 export const state = () => ({
-  blogs: [],
-  blog: {},
-
   isNavOpen: false,
   isMiniCartOpen: false,
 
@@ -41,12 +38,8 @@ export const getters = {
     return state.auth.user.id;
   },
 
-  getAllBlogs(state) {
-    return state.blogs;
-  },
-
-  getLatestBlogs(state) {
-    return state.blogs.slice(0, 2);
+  getMiniCartOpen(state) {
+    return state.isMiniCartOpen;
   },
 
   getAllProducts(state) {
@@ -71,19 +64,12 @@ export const getters = {
 };
 
 export const mutations = {
-  SET_BLOGS(state, blogs) {
-    state.blogs = blogs;
-  },
   SET_PAGE_COUNT(state, count) {
     state.pageCount = Math.ceil(Number(count) / state.pageSize);
   },
 
   SET_CURRENT_PAGE(state, page) {
     state.currentPage = page;
-  },
-
-  SET_SINGLE_BLOG(state, blog) {
-    state.blog = blog;
   },
 
   SET_PRODUCTS_CATEGORIES(state, payload) {
@@ -156,33 +142,6 @@ export const mutations = {
 };
 
 export const actions = {
-  async getAllBlogs({ commit, state }) {
-    try {
-      commit("IS_LOADER", true);
-      const start = state.currentPage === 0 ? 0 : (state.currentPage - 1) * 3;
-
-      let res = await axios.get(
-        `${baseURL}/blogs/?_sort=id:DESC&_limit=${state.pageSize}&_start=${start}`
-      );
-      let blogCount = await axios.get(`${baseURL}/blogs/count`);
-      commit("SET_BLOGS", res.data);
-      commit("SET_PAGE_COUNT", blogCount.data);
-      commit("IS_LOADER", false);
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
-  async getSingleBlog({ commit }, params) {
-    try {
-      let res = await axios.get(`${baseURL}/blogs/${params}`);
-
-      commit("SET_SINGLE_BLOG", res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
   async fetchAllProductsCategories({ commit }) {
     try {
       let res = await axios.get(`${baseURL}/product-categories`);

@@ -90,15 +90,16 @@ export default {
   computed: {
     ...mapGetters([
       "getMiniCartOpen",
-      "getCart",
-      "getCartTotalPrice",
       "isAuthenticated",
-      "isUser"
+      "isUser",
+      "getCart",
+      "getCartTotalPrice"
     ])
   },
 
   methods: {
     ...mapActions(["increaseProductQty", "decreaseProductQty"]),
+
     closeBackdrop() {
       this.$store.dispatch("toggleMiniCart");
     },

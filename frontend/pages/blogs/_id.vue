@@ -4,7 +4,7 @@
       class="article__img m-b-20"
       v-if="blog.Image"
       :style="{
-        backgroundImage: `url(http://localhost:1337${blog.Image.url})`
+        backgroundImage: `url(http://localhost:1337${blog.Image.url})`,
       }"
     ></div>
     <div class="grid columns-1 columns-m-2-1 container">
@@ -37,7 +37,7 @@ import BaseSidebar from "../../components/UI/BaseSidebar.vue";
 export default {
   components: { BaseSidebar },
   computed: {
-    ...mapState(["blog"])
+    ...mapState({ blog: (state) => state.blog.blog }),
   },
 
   mounted() {
@@ -45,8 +45,8 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getSingleBlog"])
-  }
+    ...mapActions("blog", { getSingleBlog: "getSingleBlog" }),
+  },
 };
 </script>
 
