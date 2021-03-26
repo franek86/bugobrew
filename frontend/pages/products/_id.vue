@@ -50,7 +50,7 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   computed: {
-    ...mapState(["product"]),
+    ...mapState({ product: (state) => state.product.product }),
   },
 
   mounted() {
@@ -58,7 +58,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchSingleProduct"]),
+    ...mapActions("product", { fetchSingleProduct: "fetchSingleProduct" }),
 
     addToCart(product) {
       this.$store.dispatch("addProductToCart", product);

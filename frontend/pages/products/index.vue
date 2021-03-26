@@ -41,25 +41,25 @@ export default {
 
   computed: {
     ...mapState(["productCategories"]),
-    ...mapGetters(["getAllProducts"]),
+    ...mapGetters("product", { getAllProducts: "getAllProducts" }),
     selected: {
       get() {
         return this.$store.state.selected.categories;
       },
       set(value) {
         this.$store.commit("SET_SELECTED", value);
-      }
-    }
+      },
+    },
   },
 
   watch: {
     selected: {
-      handler: function() {
+      handler: function () {
         this.fetchAllProductsCategories();
         this.fetchAllProducts();
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
 
   mounted() {
@@ -68,8 +68,9 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchAllProductsCategories", "fetchAllProducts"])
-  }
+    ...mapActions(["fetchAllProductsCategories"]),
+    ...mapActions("product", { fetchAllProducts: "fetchAllProducts" }),
+  },
 };
 </script>
 
