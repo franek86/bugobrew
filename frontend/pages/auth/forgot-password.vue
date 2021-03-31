@@ -6,12 +6,17 @@
         <p class="text--red" v-if="error">{{ error }}</p>
         <form class="form" action="post" @submit.prevent="forgotPassword">
           <h1 class="text--red m-b-25">Forgot Password</h1>
-          <input
-            class="form__input"
-            v-model="email"
-            type="email"
-            placeholder="Email address"
-          />
+          <div class="form__field">
+            <label>
+              <input
+                class="form__input"
+                v-model="email"
+                type="email"
+                placeholder="Email"
+              />
+              <span class="form__label">Email address</span>
+            </label>
+          </div>
           <button class="btn--primary" type="submit">Reset Link</button>
         </form>
       </div>

@@ -12,27 +12,70 @@
 
         <form class="form">
           <h1 class="text--red m-b-25">Create account</h1>
-          <input
-            class="form__input"
-            v-model="username"
-            type="name"
-            placeholder="Username"
-            required
-          />
-          <input
-            class="form__input"
-            v-model="email"
-            type="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            class="form__input"
-            v-model="password"
-            type="password"
-            placeholder="Password"
-            required
-          />
+          <div class="form__field">
+            <label>
+              <input
+                class="form__input"
+                v-model="firstname"
+                type="name"
+                placeholder="First name"
+                required
+              />
+              <span class="form__label">First name</span>
+            </label>
+          </div>
+
+          <div class="form__field">
+            <label>
+              <input
+                class="form__input"
+                v-model="lastname"
+                type="name"
+                placeholder="Last name"
+                required
+              />
+              <span class="form__label">Last name</span>
+            </label>
+          </div>
+
+          <div class="form__field">
+            <label>
+              <input
+                class="form__input"
+                v-model="username"
+                type="name"
+                placeholder="Username"
+                required
+              />
+              <span class="form__label">Username</span>
+            </label>
+          </div>
+
+          <div class="form__field">
+            <label>
+              <input
+                class="form__input"
+                v-model="email"
+                type="email"
+                placeholder="Email"
+                required
+              />
+              <span class="form__label">Email</span>
+            </label>
+          </div>
+
+          <div class="form__field">
+            <label>
+              <input
+                class="form__input"
+                v-model="password"
+                type="password"
+                placeholder="Password"
+                required
+              />
+              <span class="form__label">Password</span>
+            </label>
+          </div>
           <button class="btn--primary" @click.prevent="registerForm()">
             Register
           </button>
@@ -58,6 +101,8 @@ export default {
       error: false,
       success: false,
       showPassword: false,
+      firstname: "",
+      lastname: "",
       username: "",
       email: "",
       password: "",
@@ -70,6 +115,8 @@ export default {
       try {
         this.$axios.setToken(false);
         await this.$axios.post("http://localhost:1337/auth/local/register", {
+          firstname: this.firstname,
+          lastname: this.lastname,
           username: this.username,
           email: this.email,
           password: this.password,

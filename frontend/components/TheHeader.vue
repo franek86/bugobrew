@@ -20,7 +20,13 @@
               :class="{ active: isUserNavHover }"
             >
               <nuxt-link
-                to="/profile"
+                to="/user/orders"
+                class="user--nav"
+                @click.native="closeUserNav()"
+                >Orders</nuxt-link
+              >
+              <nuxt-link
+                to="/user/profile"
                 class="user--nav"
                 @click.native="closeUserNav()"
                 >Profile</nuxt-link

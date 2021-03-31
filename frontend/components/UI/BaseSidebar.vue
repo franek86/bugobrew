@@ -20,9 +20,8 @@ export default {
     title: {
       type: String,
       required: false,
-      default: "Sidebar"
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -33,5 +32,6 @@ export default {
   padding: $padding-10;
   border-radius: $radius-small;
   box-shadow: $box-shadow;
-}</style
->>
+}
+</style>
+>

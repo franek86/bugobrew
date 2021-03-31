@@ -119,7 +119,7 @@ export default {
             Authorization: token,
           },
         });
-        this.$router.push("/profile");
+        this.$router.push("user/orders");
       } catch (error) {
         console.log(error);
       }

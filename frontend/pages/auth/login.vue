@@ -9,18 +9,29 @@
 
           <form class="form">
             <h1 class="text--red m-b-25">Login</h1>
-            <input
-              class="form__input"
-              v-model="email"
-              type="email"
-              placeholder="Email"
-            />
-            <input
-              class="form__input"
-              v-model="password"
-              type="password"
-              placeholder="Password"
-            />
+            <div class="form__field">
+              <label>
+                <input
+                  class="form__input"
+                  v-model="email"
+                  type="email"
+                  placeholder="Email"
+                />
+                <span class="form__label">Email</span>
+              </label>
+            </div>
+
+            <div class="form__field">
+              <label>
+                <input
+                  class="form__input"
+                  v-model="password"
+                  type="password"
+                  placeholder="Password"
+                />
+                <span class="form__label">Password</span>
+              </label>
+            </div>
             <button class="btn--primary" @click.prevent="submitForm()">
               Login
             </button>
@@ -69,7 +80,7 @@ export default {
             password: this.password,
           },
         });
-        let redirect_url = this.$route.query.redirect || "/profile";
+        let redirect_url = this.$route.query.redirect || "/user/orders";
 
         this.$router.push(redirect_url);
       } catch (error) {
