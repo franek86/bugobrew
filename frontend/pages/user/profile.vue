@@ -11,34 +11,19 @@
         <form class="form">
           <div class="form__field">
             <label>
-              <input
-                class="form__input"
-                type="name"
-                placeholder="First name"
-                :value="isUser.firstname"
-              />
+              <input class="form__input" type="name" v-model="firstname" />
               <span class="form__label">First name</span>
             </label>
           </div>
           <div class="form__field">
             <label>
-              <input
-                class="form__input"
-                type="name"
-                placeholder="Last name"
-                :value="isUser.lastname"
-              />
+              <input class="form__input" type="name" v-model="lastname" />
               <span class="form__label">Last name</span>
             </label>
           </div>
           <div class="form__field">
             <label>
-              <input
-                class="form__input"
-                type="name"
-                placeholder="Username"
-                :value="isUser.username"
-              />
+              <input class="form__input" type="name" v-model="username" />
               <span class="form__label">Username</span>
             </label>
           </div>
@@ -47,8 +32,7 @@
               <input
                 class="form__input"
                 type="email"
-                placeholder="Email"
-                :value="isUser.email"
+                v-model="email"
                 disabled
               />
               <span class="form__label">Email</span>
@@ -95,15 +79,35 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import BaseSidebar from "../../components/UI/BaseSidebar.vue";
 import ProfileNav from "../../components/ProfileNav.vue";
 
 export default {
   middleware: "auth-guard",
+  data() {
+    return {
+      firstname: this.$store.getters.isUser.firstname,
+      lastname: this.$store.getters.isUser.lastname,
+      username: this.$store.getters.isUser.username,
+      email: this.$store.getters.isUser.email,
+    };
+  },
   components: { BaseSidebar, ProfileNav },
-  computed: {
-    ...mapGetters(["isUser"]),
+
+  methods: {
+    updateProfile() {
+      this.$store.dispatch("updateUserProfile", {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        username: this.username,
+      });
+
+      this.$toasted.show(`Profile updated`, {
+        theme: "bubble",
+        duration: 2000,
+        className: "custom--toasted",
+      });
+    },
   },
 };
 </script>

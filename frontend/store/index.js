@@ -71,6 +71,10 @@ export const mutations = {
 
   IS_LOADER(state, payload) {
     state.isLoading = payload;
+  },
+
+  EDIT_USER(state) {
+    state.auth.user;
   }
 };
 
@@ -79,6 +83,22 @@ export const actions = {
     try {
       let res = await axios.get(`${baseURL}/product-categories`);
       commit("SET_PRODUCTS_CATEGORIES", res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async updateUserProfile({ commit, getters }, userData) {
+    try {
+      let userId = getters.getUserId;
+      let token = localStorage.getItem("auth._token.local");
+
+      await axios.put(`${baseURL}/users/${userId}`, userData, {
+        headers: {
+          Authorization: token
+        }
+      });
+      commit("EDIT_USER", userData);
     } catch (error) {
       console.log(error);
     }
