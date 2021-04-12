@@ -81,7 +81,6 @@
   }
 }
 
-.error--message,
 .success--message {
   border-radius: 3px;
   color: $color-white;
@@ -89,7 +88,12 @@
 }
 
 .error--message {
-  background-color: $color-primary;
+  color: $color-red;
+  p {
+    font-size: 1.2rem;
+    text-align: left;
+    margin: $margin-10 0;
+  }
 }
 
 .success--message {

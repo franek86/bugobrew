@@ -19,9 +19,12 @@
                 v-model="firstname"
                 type="name"
                 placeholder="First name"
-                required
+                @blur="$v.firstname.$touch()"
               />
               <span class="form__label">First name</span>
+              <div class="error--message" v-if="$v.firstname.$error">
+                <p v-if="!$v.firstname.required">First name is required</p>
+              </div>
             </label>
           </div>
 
@@ -32,10 +35,13 @@
                 v-model="lastname"
                 type="name"
                 placeholder="Last name"
-                required
+                @blur="$v.lastname.$touch()"
               />
               <span class="form__label">Last name</span>
             </label>
+            <div class="error--message" v-if="$v.lastname.$error">
+              <p v-if="!$v.lastname.required">Last name is required</p>
+            </div>
           </div>
 
           <div class="form__field">
@@ -45,10 +51,13 @@
                 v-model="username"
                 type="name"
                 placeholder="Username"
-                required
+                @blur="$v.username.$touch()"
               />
               <span class="form__label">Username</span>
             </label>
+            <div class="error--message" v-if="$v.username.$error">
+              <p v-if="!$v.username.required">Username is required</p>
+            </div>
           </div>
 
           <div class="form__field">
@@ -58,10 +67,14 @@
                 v-model="email"
                 type="email"
                 placeholder="Email"
-                required
+                @blur="$v.email.$touch()"
               />
               <span class="form__label">Email</span>
             </label>
+            <div class="error--message" v-if="$v.email.$error">
+              <p v-if="!$v.email.required">Email is required</p>
+              <p v-if="!$v.email.email">Email is not valid</p>
+            </div>
           </div>
 
           <div class="form__field">
@@ -71,11 +84,40 @@
                 v-model="password"
                 type="password"
                 placeholder="Password"
-                required
+                @blur="$v.password.$touch()"
               />
               <span class="form__label">Password</span>
             </label>
+            <div class="error--message" v-if="$v.password.$error">
+              <p v-if="!$v.password.required">Password is required</p>
+              <p v-if="!$v.password.minLength">
+                Name must have at least
+                {{ $v.password.$params.minLength.min }} characters.
+              </p>
+            </div>
           </div>
+
+          <div class="form__field">
+            <label>
+              <input
+                class="form__input"
+                type="password"
+                v-model.trim="$v.repeatPassword.$model"
+                placeholder="Repeat password"
+                @blur="$v.repeatPassword.$touch()"
+              />
+              <span class="form__label">Repeat Password</span>
+            </label>
+            <div class="error--message" v-if="$v.repeatPassword.$error">
+              <p v-if="!$v.repeatPassword.required">
+                Repeat password is required
+              </p>
+              <p v-if="!$v.repeatPassword.sameAsPassword">
+                Passwords must be identical.
+              </p>
+            </div>
+          </div>
+
           <button class="btn--primary" @click.prevent="registerForm()">
             Register
           </button>
@@ -93,6 +135,7 @@
 </template>
 
 <script>
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 export default {
   middleware: "guest",
 
@@ -106,12 +149,38 @@ export default {
       username: "",
       email: "",
       password: "",
+      repeatPassword: "",
     };
+  },
+
+  validations: {
+    firstname: {
+      required,
+    },
+    lastname: {
+      required,
+    },
+    username: {
+      required,
+    },
+    email: {
+      email,
+      required,
+    },
+    password: {
+      required,
+      minLength: minLength(6),
+    },
+    repeatPassword: {
+      required,
+      sameAsPassword: sameAs("password"),
+    },
   },
 
   methods: {
     async registerForm() {
       this.error = null;
+      this.$v.$touch();
       try {
         this.$axios.setToken(false);
         await this.$axios.post("http://localhost:1337/auth/local/register", {

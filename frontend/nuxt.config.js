@@ -34,6 +34,7 @@ export default {
     { src: "~/plugins/pagination.js" },
     { src: "~/plugins/localStorage.js", ssr: false },
     { src: "~/plugins/toasted.js", ssr: false },
+    { src: "~/plugins/vuelidate.js" },
   ],
   /*
    ** Nuxt.js dev-modules

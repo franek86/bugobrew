@@ -3,12 +3,11 @@
     <div class="container">
       <div class="w-100 w-m-50 margin-auto">
         <div class="login__form">
-          <div class="error--message" v-if="error">
-            <p>{{ error }}</p>
-          </div>
-
           <form class="form">
             <h1 class="text--red m-b-25">Login</h1>
+            <div class="error--message" v-if="error">
+              <p>{{ error }}</p>
+            </div>
             <div class="form__field">
               <label>
                 <input
@@ -16,9 +15,15 @@
                   v-model="email"
                   type="email"
                   placeholder="Email"
+                  autocomplete="email"
+                  @blur="$v.email.$touch()"
                 />
                 <span class="form__label">Email</span>
               </label>
+              <div class="error--message" v-if="$v.email.$error">
+                <p v-if="!$v.email.required">Email is required</p>
+                <p v-if="!$v.email.email">Email is not valid</p>
+              </div>
             </div>
 
             <div class="form__field">
@@ -28,9 +33,17 @@
                   v-model="password"
                   type="password"
                   placeholder="Password"
+                  @blur="$v.password.$touch()"
                 />
                 <span class="form__label">Password</span>
               </label>
+              <div class="error--message" v-if="$v.password.$error">
+                <p v-if="!$v.password.password">Password is required</p>
+                <p v-if="!$v.password.minLength">
+                  Name must have at least
+                  {{ $v.password.$params.minLength.min }} characters.
+                </p>
+              </div>
             </div>
             <button class="btn--primary" @click.prevent="submitForm()">
               Login
@@ -48,16 +61,13 @@
             <nuxt-link to="/auth/forgot-password">Forgot Password?</nuxt-link>
           </div>
         </div>
-
-        <!-- <div class="login__img">
-          <img src="~/assets/img/login.svg" alt="" />
-        </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { required, email, minLength } from "vuelidate/lib/validators";
 export default {
   middleware: "guest",
 
@@ -71,9 +81,21 @@ export default {
     };
   },
 
+  validations: {
+    email: {
+      email,
+      required,
+    },
+    password: {
+      required,
+      minLength: minLength(6),
+    },
+  },
+
   methods: {
     async submitForm() {
       try {
+        this.$v.$touch();
         await this.$auth.loginWith("local", {
           data: {
             identifier: this.email,

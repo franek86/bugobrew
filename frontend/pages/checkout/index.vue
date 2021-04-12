@@ -6,29 +6,33 @@
       <div class="grid columns-2">
         <div class="order__form">
           <form class="form" @submit.prevent="placeOrder">
-            <label class="form__label">Address</label>
-            <input
-              class="form__input"
-              v-model="address"
-              type="text"
-              placeholder="13 boulevard francis"
-            />
-
-            <label class="form__label">City</label>
-            <input
-              v-model="city"
-              class="form__input"
-              type="text"
-              placeholder="San francisco"
-            />
-
-            <label class="form__label">Postal code</label>
-            <input
-              class="form__input"
-              v-model="postalCode"
-              type="text"
-              placeholder="92000"
-            />
+            <div class="form__field">
+              <input
+                class="form__input"
+                v-model="address"
+                type="text"
+                placeholder="13 boulevard francis"
+              />
+              <span class="form__label">Address</span>
+            </div>
+            <div class="form__field">
+              <input
+                v-model="city"
+                class="form__input"
+                type="text"
+                placeholder="San francisco"
+              />
+              <span class="form__label">City</span>
+            </div>
+            <div class="form__field">
+              <input
+                class="form__input"
+                v-model="postalCode"
+                type="text"
+                placeholder="92000"
+              />
+              <span class="form__label">Postal code</span>
+            </div>
 
             <div class="m-t-20">
               <button class="btn--primary" name="button">Place order</button>
