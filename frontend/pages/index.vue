@@ -10,6 +10,15 @@
         </div>
       </div>
     </section>
+    <section class="p-t-60 p-b-60">
+      <div class="container">
+        <h3 class="f3 m-b-75 text--center">Featured products</h3>
+        <nuxt-link to="/products" class="m-b-30 link--primary"
+          >Shop all products</nuxt-link
+        >
+        <ProductList :products="getFeaturedProducts" />
+      </div>
+    </section>
 
     <section class="bg--secondary p-t-60 p-b-60">
       <div class="container">
@@ -48,30 +57,33 @@
         <nuxt-link to="/blogs" class="btn--primary"> All posts </nuxt-link>
       </div>
     </section>
-
-    <section></section>
   </div>
 </template>
 
 <script>
 import AppSwiper from "@/components/AppSwiper";
 import { mapGetters, mapActions } from "vuex";
+import ProductList from "@/components/product/ProductList";
 
 export default {
   components: {
     AppSwiper,
+    ProductList,
   },
 
   computed: {
     ...mapGetters("blog", { getLatestBlogs: "getLatestBlogs" }),
+    ...mapGetters("product", { getFeaturedProducts: "getFeaturedProducts" }),
   },
 
   mounted() {
     this.getAllBlogs();
+    this.featuredProducts();
   },
 
   methods: {
     ...mapActions("blog", { getAllBlogs: "getAllBlogs" }),
+    ...mapActions("product", { featuredProducts: "fetchAllProducts" }),
   },
 };
 </script>

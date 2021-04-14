@@ -7,12 +7,16 @@ export default {
     return {
       products: [],
       product: {},
+      featuredProd: [],
     };
   },
 
   getters: {
     getAllProducts(state) {
       return state.products;
+    },
+    getFeaturedProducts(state) {
+      return state.featuredProd;
     },
   },
 
@@ -24,6 +28,10 @@ export default {
     SET_SINGLE_PRODUCT(state, product) {
       state.product = product;
     },
+
+    SET_FEATURED_PRODUCTS(state, featured) {
+      state.featuredProd = featured;
+    },
   },
 
   actions: {
@@ -33,7 +41,12 @@ export default {
           params: { product_categories: rootState.selected.categories },
         });
 
+        let featured = res.data.filter((prod) =>
+          prod.product_categories.some((cat) => cat.Category === "Featured")
+        );
+
         commit("SET_PRODUCTS", res.data);
+        commit("SET_FEATURED_PRODUCTS", featured);
       } catch (error) {
         console.log(error);
       }
