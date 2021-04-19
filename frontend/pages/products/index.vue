@@ -9,16 +9,18 @@
             v-for="(category, index) in productCategories"
             :key="index"
           >
-            {{ category.Category }}
-            <input
-              class="form_check__input"
-              type="checkbox"
-              :value="category.id"
-              :id="'category-' + index"
-              v-model="selected"
-            />
+            <div :class="category.Category">
+              <span>{{ category.Category }}</span>
+              <input
+                class="form_check__input"
+                type="checkbox"
+                :value="category.id"
+                :id="'category-' + index"
+                v-model="selected"
+              />
 
-            <span class="form_check__custom"></span>
+              <span class="form_check__custom"></span>
+            </div>
           </label>
         </template>
       </base-sidebar>

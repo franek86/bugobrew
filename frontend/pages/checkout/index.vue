@@ -5,15 +5,37 @@
     <div class="container m-t-60 m-b-60">
       <div class="grid columns-2">
         <div class="order__form">
-          <form class="form" @submit.prevent="placeOrder">
+          <div class="progress flex flex--between m-b-20">
+            <!-- <div class="progress__line" :style="{ width: progress }"></div> -->
+            <div
+              class="progress__step"
+              :style="{ width: progress }"
+              :class="{ current: index + 1 === activeStep }"
+              v-for="(step, index) in steps"
+              :key="index"
+            >
+              <div class="progress--numb flex flex--center align--center">
+                {{ index + 1 }}
+              </div>
+            </div>
+          </div>
+
+          <checkoutStep1 v-if="activeStep === 1" />
+          <checkoutStep2 v-if="activeStep === 2" />
+          <checkoutStep3 v-if="activeStep === 3" />
+          <!-- <form class="form" @submit.prevent="placeOrder">
             <div class="form__field">
               <input
                 class="form__input"
                 v-model="address"
                 type="text"
                 placeholder="13 boulevard francis"
+                @blur="$v.address.$touch()"
               />
               <span class="form__label">Address</span>
+              <div class="error--message" v-if="$v.address.$error">
+                <p v-if="!$v.address.required">Address is required</p>
+              </div>
             </div>
             <div class="form__field">
               <input
@@ -21,8 +43,12 @@
                 class="form__input"
                 type="text"
                 placeholder="San francisco"
+                @blur="$v.city.$touch()"
               />
               <span class="form__label">City</span>
+              <div class="error--message" v-if="$v.city.$error">
+                <p v-if="!$v.city.required">City is required</p>
+              </div>
             </div>
             <div class="form__field">
               <input
@@ -30,14 +56,25 @@
                 v-model="postalCode"
                 type="text"
                 placeholder="92000"
+                @blur="$v.postalCode.$touch()"
               />
               <span class="form__label">Postal code</span>
+              <div class="error--message" v-if="$v.postalCode.$error">
+                <p v-if="!$v.postalCode.required">Postal code is required</p>
+              </div>
             </div>
 
             <div class="m-t-20">
               <button class="btn--primary" name="button">Place order</button>
             </div>
-          </form>
+          </form> -->
+          <button class="btn--primary" v-if="!isFirstStep" @click="prevStep">
+            Prev
+          </button>
+          <button class="btn--primary" v-if="!isLastStep" @click="nextStep">
+            Next
+          </button>
+          <button class="btn--primary" v-else name="button">Place order</button>
         </div>
 
         <div class="order">
@@ -58,7 +95,7 @@
 
             <div>
               <p class="f5">
-                {{ itemTotalPrice(order.Regular_price, order.qty) }}
+                {{ itemTotalPrice(order.Regular_price, order.qty) }} &euro;
               </p>
             </div>
           </div>
@@ -70,6 +107,10 @@
 
 <script>
 import TheHero from "@/components/UI/TheHero";
+import checkoutStep1 from "@/components/checkout/checkoutStep1";
+import checkoutStep2 from "@/components/checkout/checkoutStep2";
+import checkoutStep3 from "@/components/checkout/checkoutStep3";
+import { required } from "vuelidate/lib/validators";
 import axios from "axios";
 
 import { mapGetters } from "vuex";
@@ -77,6 +118,9 @@ export default {
   middleware: "auth-guard",
   components: {
     TheHero,
+    checkoutStep1,
+    checkoutStep2,
+    checkoutStep3,
   },
 
   data() {
@@ -88,7 +132,22 @@ export default {
 
       complete: false,
       loading: false,
+
+      activeStep: 1,
+
+      steps: ["checkoutStep1", "checkoutStep2", "checkoutStep3"],
     };
+  },
+  validations: {
+    address: {
+      required,
+    },
+    postalCode: {
+      required,
+    },
+    city: {
+      required,
+    },
   },
 
   computed: {
@@ -97,11 +156,34 @@ export default {
       getCart: "getCart",
       getCartTotalPrice: "getCartTotalPrice",
     }),
+
+    stepsLength() {
+      return this.steps.length;
+    },
+
+    isLastStep() {
+      return this.activeStep === this.stepsLength;
+    },
+
+    isFirstStep() {
+      return this.activeStep === 1;
+    },
+
+    progress() {
+      return `${(100 / this.stepsLength) * this.activeStep}%`;
+    },
   },
 
   methods: {
     itemTotalPrice(price, qty) {
       return (price * qty).toFixed(2);
+    },
+
+    nextStep() {
+      this.activeStep++;
+    },
+    prevStep() {
+      this.activeStep--;
     },
 
     async placeOrder() {
@@ -174,6 +256,46 @@ export default {
     width: 80px;
     height: 80px;
     object-fit: contain;
+  }
+}
+
+.progress {
+  height: 3rem;
+
+  &__step {
+    position: relative;
+    > div {
+      background-color: $color-primary;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      color: $color-white;
+
+      &:before {
+        content: "";
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        background-color: $color-primary;
+        z-index: -1;
+      }
+    }
+
+    &.current {
+      ~ .progress__step > div {
+        background-color: $color-secondary;
+        color: $color-text;
+      }
+
+      ~ .progress__step > div {
+        &:before {
+          background-color: $color-secondary;
+          color: $color-text;
+        }
+      }
+    }
   }
 }
 </style>

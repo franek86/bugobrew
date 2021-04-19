@@ -57,7 +57,7 @@
                   </button>
 
                   <p class="f5">
-                    {{ itemTotalPrice(item.Regular_price, item.qty) }}
+                    {{ itemTotalPrice(item.Regular_price, item.qty) }} &euro;
                   </p>
                 </div>
               </div>
@@ -71,7 +71,7 @@
         <div>
           <div class="total m-b-20 flex flex--between align--center">
             <span>Total:</span>
-            <span class="f4">{{ getCartTotalPrice.toFixed(2) }}</span>
+            <span class="f4">{{ getCartTotalPrice.toFixed(2) }} &euro;</span>
           </div>
 
           <div class="btn--primary" @click="goToCheckout()">Checkout</div>

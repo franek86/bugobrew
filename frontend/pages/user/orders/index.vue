@@ -40,7 +40,7 @@
 
                 <div class="order--info">
                   Total price:
-                  <span>{{ order.amount }} </span>
+                  <span>{{ order.amount }} &euro;</span>
                 </div>
               </div>
 
