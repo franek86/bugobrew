@@ -6,7 +6,6 @@
       <div class="grid columns-2">
         <div class="order__form">
           <div class="progress flex flex--between m-b-20">
-            <!-- <div class="progress__line" :style="{ width: progress }"></div> -->
             <div
               class="progress__step"
               :style="{ width: progress }"
@@ -20,61 +19,36 @@
             </div>
           </div>
 
-          <checkoutStep1 v-if="activeStep === 1" />
-          <checkoutStep2 v-if="activeStep === 2" />
-          <checkoutStep3 v-if="activeStep === 3" />
-          <!-- <form class="form" @submit.prevent="placeOrder">
-            <div class="form__field">
-              <input
-                class="form__input"
-                v-model="address"
-                type="text"
-                placeholder="13 boulevard francis"
-                @blur="$v.address.$touch()"
-              />
-              <span class="form__label">Address</span>
-              <div class="error--message" v-if="$v.address.$error">
-                <p v-if="!$v.address.required">Address is required</p>
-              </div>
-            </div>
-            <div class="form__field">
-              <input
-                v-model="city"
-                class="form__input"
-                type="text"
-                placeholder="San francisco"
-                @blur="$v.city.$touch()"
-              />
-              <span class="form__label">City</span>
-              <div class="error--message" v-if="$v.city.$error">
-                <p v-if="!$v.city.required">City is required</p>
-              </div>
-            </div>
-            <div class="form__field">
-              <input
-                class="form__input"
-                v-model="postalCode"
-                type="text"
-                placeholder="92000"
-                @blur="$v.postalCode.$touch()"
-              />
-              <span class="form__label">Postal code</span>
-              <div class="error--message" v-if="$v.postalCode.$error">
-                <p v-if="!$v.postalCode.required">Postal code is required</p>
-              </div>
-            </div>
+          <keep-alive>
+            <component
+              :is="activeStepComponent"
+              @setUpdate="mergeFormData"
+              ref="activeStepComponent"
+            />
+          </keep-alive>
 
-            <div class="m-t-20">
-              <button class="btn--primary" name="button">Place order</button>
-            </div>
-          </form> -->
           <button class="btn--primary" v-if="!isFirstStep" @click="prevStep">
             Prev
           </button>
-          <button class="btn--primary" v-if="!isLastStep" @click="nextStep">
+
+          <button
+            class="btn--primary"
+            v-if="!isLastStep"
+            @click="nextStep"
+            :disabled="!canProceed"
+          >
             Next
           </button>
-          <button class="btn--primary" v-else name="button">Place order</button>
+
+          <button
+            class="btn--primary"
+            v-else
+            name="button"
+            @click="placeOrder"
+            :disabled="!canProceed"
+          >
+            Place order
+          </button>
         </div>
 
         <div class="order">
@@ -109,8 +83,8 @@
 import TheHero from "@/components/UI/TheHero";
 import checkoutStep1 from "@/components/checkout/checkoutStep1";
 import checkoutStep2 from "@/components/checkout/checkoutStep2";
-import checkoutStep3 from "@/components/checkout/checkoutStep3";
-import { required } from "vuelidate/lib/validators";
+
+//import { required } from "vuelidate/lib/validators";
 import axios from "axios";
 
 import { mapGetters } from "vuex";
@@ -120,34 +94,25 @@ export default {
     TheHero,
     checkoutStep1,
     checkoutStep2,
-    checkoutStep3,
   },
 
   data() {
     return {
       uid: Date.now().toString(36) + Math.random().toString(36).substr(2),
-      address: "",
-      postalCode: "",
-      city: "",
+      form: {
+        address: "",
+        postalCode: "",
+        city: "",
+      },
 
       complete: false,
       loading: false,
 
       activeStep: 1,
 
-      steps: ["checkoutStep1", "checkoutStep2", "checkoutStep3"],
+      steps: ["checkoutStep1", "checkoutStep2"],
+      canProceed: false,
     };
-  },
-  validations: {
-    address: {
-      required,
-    },
-    postalCode: {
-      required,
-    },
-    city: {
-      required,
-    },
   },
 
   computed: {
@@ -172,6 +137,10 @@ export default {
     progress() {
       return `${(100 / this.stepsLength) * this.activeStep}%`;
     },
+
+    activeStepComponent() {
+      return this.steps[this.activeStep - 1];
+    },
   },
 
   methods: {
@@ -181,18 +150,29 @@ export default {
 
     nextStep() {
       this.activeStep++;
+      this.$nextTick(() => {
+        this.canProceed = this.$refs.activeStepComponent.isValid;
+      });
     },
     prevStep() {
       this.activeStep--;
+      this.$nextTick(() => {
+        this.canProceed = this.$refs.activeStepComponent.isValid;
+      });
+    },
+
+    mergeFormData({ data, isValid }) {
+      this.form = { ...this.form, ...data };
+      this.canProceed = isValid;
     },
 
     async placeOrder() {
       try {
         const orders = {
           orderNumber: this.uid,
-          address: this.address,
-          postalCode: this.postalCode,
-          city: this.city,
+          address: this.form.address,
+          postalCode: this.form.postalCode,
+          city: this.form.city,
           products: this.getCart,
           amount: this.getCartTotalPrice,
           user: this.getUserId,
@@ -222,7 +202,6 @@ export default {
 
 .order {
   &__item {
-    border-bottom: 1px solid $color-grey;
     display: grid;
     grid-template-columns: 100px 1fr 1fr;
     align-items: center;

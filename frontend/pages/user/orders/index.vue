@@ -46,11 +46,11 @@
 
               <div class="flex">
                 <div
-                  v-for="(orderItems, index) in order.products"
+                  v-for="orderItems in order.products"
                   :key="orderItems.id"
                   class="order__item"
                 >
-                  <div class="order__item_img" v-if="index <= 2">
+                  <div class="order__item_img">
                     <div class="product--img" v-if="orderItems.Single_image">
                       <img
                         :src="`http://localhost:1337${orderItems.Single_image.formats.large.url}`"
@@ -58,12 +58,6 @@
                       />
                     </div>
                   </div>
-                </div>
-                <div
-                  v-if="order.products.length > 1"
-                  class="order__item_img flex align--center flex--center"
-                >
-                  + {{ order.products.length - 3 }}
                 </div>
               </div>
             </div>

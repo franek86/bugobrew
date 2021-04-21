@@ -31,7 +31,16 @@ export default {
             Authorization: token,
           },
         });
-        let userOrder = res.data.filter((order) => order.user.id === userId);
+
+        let userOrder = res.data
+          .sort((x1, x2) => {
+            if (x1.created_at < x2.created_at) {
+              return 1;
+            } else {
+              return -1;
+            }
+          })
+          .filter((order) => order.user.id === userId);
 
         commit("SET_USER_ORDERS", userOrder);
       } catch (error) {
