@@ -54,14 +54,16 @@
       "configurable": false
     },
     "orders": {
-      "collection": "orders",
-      "via": "user"
+      "via": "user",
+      "collection": "orders"
     },
     "firstname": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "lastname": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

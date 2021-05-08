@@ -28,7 +28,7 @@
                     <th>Order number</th>
                     <th>Order date</th>
                     <th>Order total</th>
-                    <th>Order status</th>
+                    <th>Order delivered</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -36,7 +36,8 @@
                     <td>{{ order.orderNumber }}</td>
                     <td>{{ order.created_at | moment("DD.MM.YYYY") }}</td>
                     <td>{{ order.amount }} &euro;</td>
-                    <td>Status</td>
+                    <td v-if="order.isDelivered" style="color: #00bf7a">Yes</td>
+                    <td v-else style="color: #ef5454">No</td>
                   </tr>
                 </tbody>
               </table>

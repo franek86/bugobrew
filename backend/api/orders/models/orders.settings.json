@@ -2,11 +2,13 @@
   "kind": "collectionType",
   "collectionName": "orders",
   "info": {
-    "name": "Orders"
+    "name": "Orders",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "address": {
@@ -31,6 +33,10 @@
     },
     "orderNumber": {
       "type": "string"
+    },
+    "isDelivered": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
