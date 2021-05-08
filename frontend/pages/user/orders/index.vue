@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container m-b-60 m-t-60">
-      <div class="grid columns-m-1-3">
+      <div class="grid columns-m-1-3 columns-l-1-2">
         <base-sidebar>
           <template dafault>
             <ProfileNav />
@@ -22,29 +22,32 @@
               :key="order.id"
               class="order m-t-20 m-b-20"
             >
-              <div>
-                <div class="order--info">
-                  Order Number: <span>{{ order.orderNumber }}</span>
-                </div>
-                <div class="order--info">
-                  Order from:
-                  <span>{{ order.created_at | moment("DD.MM.YYYY") }}</span>
-                </div>
-                <div class="order--info">
-                  Delivery address:
-                  <span
-                    >{{ order.address }} , {{ order.postalCode }} ,
-                    {{ order.city }}</span
-                  >
-                </div>
+              <table class="order__table">
+                <thead>
+                  <tr>
+                    <th>Order number</th>
+                    <th>Order date</th>
+                    <th>Order total</th>
+                    <th>Order status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ order.orderNumber }}</td>
+                    <td>{{ order.created_at | moment("DD.MM.YYYY") }}</td>
+                    <td>{{ order.amount }} &euro;</td>
+                    <td>Status</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button
+                class="btn--secondary m-t-10"
+                @click="toggleItem(order.id)"
+              >
+                Order Details
+              </button>
 
-                <div class="order--info">
-                  Total price:
-                  <span>{{ order.amount }} &euro;</span>
-                </div>
-              </div>
-
-              <div class="flex">
+              <div v-if="show" class="flex m-t-10">
                 <div
                   v-for="orderItems in order.products"
                   :key="orderItems.id"
@@ -80,6 +83,12 @@ export default {
     ProfileNav,
   },
 
+  data() {
+    return {
+      show: false,
+    };
+  },
+
   computed: {
     ...mapGetters(["isUser", "isAuthenticated", "getUserId"]),
     ...mapGetters("order", { userOrder: "getOrders" }),
@@ -87,6 +96,15 @@ export default {
 
   methods: {
     ...mapActions("order", { getUserOrders: "fetchUserOrders" }),
+
+    toggleItem(index) {
+      this.userOrder.map((i) => {
+        if (index === i.id) {
+          this.show = !this.show;
+          console.log(index);
+        }
+      });
+    },
   },
 
   mounted() {
@@ -97,7 +115,6 @@ export default {
 
 <style lang="scss" scoped>
 .order {
-  display: flex;
   justify-content: space-between;
   border: 1px solid $color-secondary;
   padding: $padding-16;
@@ -105,16 +122,34 @@ export default {
 
   &--info {
     margin-bottom: $margin-16;
-    font-weight: 700;
+
     span {
       color: $color-text;
       font-weight: 300;
     }
   }
 
+  &__table {
+    width: 100%;
+
+    th {
+      text-transform: uppercase;
+      color: $color-grey;
+      padding: $padding-8 0;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      text-align: left;
+    }
+
+    td {
+      color: $color-text;
+      padding: $padding-8 0;
+    }
+  }
+
   &__item {
     &_img {
-      min-width: 130px;
+      width: 100px;
       margin-right: 5px;
       border: 1px solid $color-secondary;
       border-radius: $radius-midium;

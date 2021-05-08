@@ -64,6 +64,10 @@
   .columns-l-3 {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .columns-l-1-2 {
+    grid-template-columns: 1fr 2fr;
+  }
   .columns-l-2 {
     grid-template-columns: repeat(2, 1fr);
   }
