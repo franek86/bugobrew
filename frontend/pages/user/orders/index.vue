@@ -42,12 +42,16 @@
               </table>
               <button
                 class="btn--secondary m-t-10"
-                @click="toggleItem(order.id)"
+                @click="
+                  contentVisible === order.id
+                    ? (contentVisible = false)
+                    : (contentVisible = order.id)
+                "
               >
                 Order Details
               </button>
 
-              <div v-if="show" class="flex m-t-10">
+              <div class="flex m-t-10" v-if="contentVisible === order.id">
                 <div
                   v-for="orderItems in order.products"
                   :key="orderItems.id"
@@ -85,7 +89,7 @@ export default {
 
   data() {
     return {
-      show: false,
+      contentVisible: false,
     };
   },
 
@@ -96,15 +100,6 @@ export default {
 
   methods: {
     ...mapActions("order", { getUserOrders: "fetchUserOrders" }),
-
-    toggleItem(index) {
-      this.userOrder.map((i) => {
-        if (index === i.id) {
-          this.show = !this.show;
-          console.log(index);
-        }
-      });
-    },
   },
 
   mounted() {
