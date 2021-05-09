@@ -14,6 +14,9 @@ import TheHero from "@/components/UI/TheHero";
 import { mapState, mapActions } from "vuex";
 
 export default {
+  head: {
+    title: "Read Bugobrew blogs",
+  },
   components: {
     BlogList,
     TheHero,

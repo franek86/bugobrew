@@ -39,6 +39,9 @@ import Cart from "@/components/cart/Cart";
 import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
+  head: {
+    title: "Products Bugobrew",
+  },
   components: { BaseSidebar, TheHero, ProductList, Cart },
 
   computed: {

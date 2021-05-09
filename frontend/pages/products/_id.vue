@@ -49,6 +49,18 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: this.product.Title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.product.Title,
+        },
+      ],
+    };
+  },
   computed: {
     ...mapState({ product: (state) => state.product.product }),
   },

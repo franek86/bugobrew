@@ -35,6 +35,14 @@
 import { mapState, mapActions } from "vuex";
 import BaseSidebar from "../../components/UI/BaseSidebar.vue";
 export default {
+  head() {
+    return {
+      title: this.blog.Title,
+      meta: [
+        { hid: "description", name: "description", content: this.blog.Title },
+      ],
+    };
+  },
   components: { BaseSidebar },
   computed: {
     ...mapState({ blog: (state) => state.blog.blog }),

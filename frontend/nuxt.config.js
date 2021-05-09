@@ -6,7 +6,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: "Bugobrew | independent craft brewery",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -14,6 +14,32 @@ export default {
         hid: "description",
         name: "description",
         content: process.env.npm_package_description || "",
+      },
+      {
+        hid: "og:title",
+        name: "og:title",
+        content: process.env.npm_package_description || "",
+      },
+      {
+        hid: "og:locale",
+        name: "og:locale",
+        content: "en_EU",
+      },
+      {
+        hid: "og:url",
+        name: "og:url",
+        content: process.env.BASE_URL || "http://localhost:3000",
+      },
+      {
+        hid: "og:type",
+        name: "og:type",
+        content: "website",
+      },
+      {
+        hid: "og:image",
+        name: "og:image",
+        content:
+          "https://images.unsplash.com/photo-1584225064536-d0fbc0a10f18?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80",
       },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
